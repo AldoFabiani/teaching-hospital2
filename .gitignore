@@ -1,0 +1,28 @@
+/build/
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+/build/
+/bin/  
+*.class  
+.project  
+.metadata 
+.settings/  
+.classpath  
+target/  
+local.properties 
+.loadpath
+*.jar  
+*.war  
+*.ear  
+*.db 
+.DS_Store
+Thumbs.db
+Desktop.ini 
+.svn
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/bin/
