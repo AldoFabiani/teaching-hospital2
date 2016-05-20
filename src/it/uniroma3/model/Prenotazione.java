@@ -3,12 +3,33 @@ package it.uniroma3.model;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.ManyToAny;
+
+@Entity
 public class Prenotazione {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false, unique = true)
 	private String codice;
+	@Temporal(TemporalType.DATE)
 	private Date dataAvvenutaPrenotazione;
+	@Temporal(TemporalType.DATE)
 	private Date dataEsame;
+	@ManyToOne
 	private Medico medico;
+	@ManyToOne
 	private Paziente paziente;
+	@ManyToOne
 	private TipologiaEsame tipologiaEsame;
 
 	// E' davvero utile passare subito nel costruttore Medico e Paziente (in

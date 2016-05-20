@@ -5,23 +5,41 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class Paziente {
-
-	private String nome;
-	private String cognome;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false, unique = true)
 	private String codiceFiscale;
+	@Column(nullable = false)
+	private String nome;
+	@Column(nullable = false)
+	private String cognome;
 	private String indirizzo;
+	@Temporal(TemporalType.DATE)
 	private Date dataNascita;
+	// Dovrà essere nullable = false
 	private String password;
+	@Column(nullable = false, unique = true)
 	private String email;
 	private String telefono;
+	@OneToMany(mappedBy = "paziente")
 	private List<Prenotazione> prenotazioni;
 
 	public Paziente(String nome, String cognome, String codiceFiscale, String indirizzo, Date dataNascita,
 			String telefono, String email) {
+		this.codiceFiscale = codiceFiscale;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.codiceFiscale = codiceFiscale;
 		this.indirizzo = indirizzo;
 		this.dataNascita = dataNascita;
 		this.password = null; 
@@ -89,7 +107,7 @@ public class Paziente {
 	public void addPrenotazione(Prenotazione prenotazione) {
 		this.prenotazioni.add(prenotazione);
 	}
-	
+
 	// TODO equals e hashcode sul codiceFiscale
 
 	@Override

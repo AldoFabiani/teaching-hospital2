@@ -2,25 +2,49 @@ package it.uniroma3.model;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Medico {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable=false, unique=true)
+	private String codice;
+	@Column(nullable=false)
 	private String nome;
+	@Column(nullable=false)
 	private String cognome;
 	private String specializzazione;
-	private String codice;
+	
+	public Medico() {
+	}
 
 	public Medico(String nome, String cognome, String specializzazione) {
+		this.codice = UUID.randomUUID().toString();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.specializzazione = specializzazione;
-		this.codice = UUID.randomUUID().toString();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCodice() {
 		return codice;
 	}
 
-	public void setSpecializzazione(String specializzazione) {
-		this.specializzazione = specializzazione;
+	public void setCodice(String codice) {
+		this.codice = codice;
 	}
 
 	public String getNome() {
@@ -41,6 +65,10 @@ public class Medico {
 
 	public String getSpecializzazione() {
 		return specializzazione;
+	}
+
+	public void setSpecializzazione(String specializzazione) {
+		this.specializzazione = specializzazione;
 	}
 
 	@Override

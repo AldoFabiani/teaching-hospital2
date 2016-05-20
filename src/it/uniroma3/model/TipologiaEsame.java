@@ -1,14 +1,23 @@
 package it.uniroma3.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class TipologiaEsame {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false, unique = true)
 	private String nome;
 	private String descrizione;
+	@Column(nullable = false)
 	private Float costo;
-	private Long id;
 
 
-	// TODO il codice per il momento è null
 	public TipologiaEsame() {
 	}
 	
@@ -16,7 +25,6 @@ public class TipologiaEsame {
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.costo = costo;
-
 	}
 
 	public Long getId() {
