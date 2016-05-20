@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.uniroma3.model.Medico;
+import it.uniroma3.model.TipologiaEsame;
+
 @WebServlet("/inserisciNuovaPrenotazione")
 public class InserisciNuovaPrenotazioneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +30,17 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 		req.setAttribute("prova", "prova");  //x Davide
 		
 		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/prenotazione.jsp");
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/prova.jsp");
 		dispatcher.forward(req, resp);
+	}
+
+	private ArrayList<Medico> getMedici() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ArrayList<TipologiaEsame> getTipologieEsame() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
