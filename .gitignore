@@ -9,7 +9,8 @@
 *.class  
 .project  
 .metadata 
-.settings/  
+.settings
+.settings/ 
 .classpath  
 target/  
 local.properties 
