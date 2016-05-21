@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma3.model.Medico;
-import it.uniroma3.model.THWeb;
-import it.uniroma3.model.TipologiaEsame;
 
-import it.uniroma3.model.Medico;
+import it.uniroma3.model.THWeb;
 import it.uniroma3.model.TipologiaEsame;
 
 @WebServlet("/inserisciNuovaPrenotazione")
