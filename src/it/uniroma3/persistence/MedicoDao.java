@@ -11,5 +11,4 @@ public interface MedicoDao {
 	public List<Medico> findAll();       
 	public void update(Medico medico); //Update
 	public void delete(Medico medico); //Delete	
-	
 }

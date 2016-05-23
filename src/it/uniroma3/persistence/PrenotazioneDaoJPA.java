@@ -12,13 +12,13 @@ import javax.persistence.Query;
 import it.uniroma3.model.Prenotazione;
 
 @NamedQuery(name = "findAll", query = "SELECT p FROM Prenotazione p")
-public class PrenotazioneDaoJPA implements PrenotazioneDao {
+public class PrenotazioneDaoJPA extends DaoJPA implements PrenotazioneDao {
 
 	private EntityManager entityManager;
+	private EntityManagerFactory factory;
 
 	public PrenotazioneDaoJPA() {
-		EntityManagerFactory factory = 
-				Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -28,6 +28,7 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		entityManager.persist(prenotazione);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
@@ -36,25 +37,27 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		Prenotazione prenotazione = entityManager.find(Prenotazione.class, id);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 		return prenotazione;
 	}
 
-	public Prenotazione findByCodice(String codicePrenotazione){
+	public Prenotazione findByCodice(String codicePrenotazione) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		Query queryFindByCodice = entityManager.createQuery(
-			    "SELECT p FROM Prenotazione p WHERE p.codice = :codicePrenotazione"
-			);
+		Query queryFindByCodice = entityManager
+				.createQuery("SELECT p FROM Prenotazione p WHERE p.codice = :codicePrenotazione");
 		queryFindByCodice.setParameter("codicePrenotazione", codicePrenotazione);
-		Prenotazione prenotazione = 
-				(Prenotazione) queryFindByCodice.getSingleResult();
+		Prenotazione prenotazione = (Prenotazione) queryFindByCodice.getSingleResult();
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 		return prenotazione;
 	}
-	
+
 	@Override
 	public List<Prenotazione> findAll() {
-		return this.entityManager.createNamedQuery("findAll").getResultList();
+		List<Prenotazione> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		this.closeEntityManagerAndFactory();
+		return resultList;
 	}
 
 	@Override
@@ -63,6 +66,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		entityManager.merge(prenotazione);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 	}
 
 	@Override
@@ -70,7 +75,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		entityManager.remove(prenotazione);
-		tx.commit();	
+		tx.commit();
+		this.closeEntityManagerAndFactory();
 	}
 
 }

@@ -12,13 +12,13 @@ import javax.persistence.Query;
 import it.uniroma3.model.TipologiaEsame;
 
 @NamedQuery(name = "findAll", query = "SELECT t FROM TipologiaEsame t")
-public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
+public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   {
 
 	private EntityManager entityManager;
+	private EntityManagerFactory factory;
 
 	public TipologiaEsameDaoJPA() {
-		EntityManagerFactory factory = 
-				Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -28,6 +28,7 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 		tx.begin();
 		entityManager.persist(tipologiaEsame);
 		tx.commit();
+		this.closeEntityManagerAndFactory();;
 	}
 
 	@Override
@@ -36,6 +37,7 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 		tx.begin();
 		TipologiaEsame tipologiaEsame = entityManager.find(TipologiaEsame.class, id);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 		return tipologiaEsame;
 	}
 
@@ -49,12 +51,16 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 		TipologiaEsame tipologiaEsame = 
 				(TipologiaEsame) queryFindByNome.getSingleResult();
 		tx.commit();
+		this.closeEntityManagerAndFactory();;
 		return tipologiaEsame;
 	}
 	
 	@Override
 	public List<TipologiaEsame> findAll() {
-		return this.entityManager.createNamedQuery("findAll").getResultList();
+		 List<TipologiaEsame> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		 this.closeEntityManagerAndFactory();
+		 return resultList;
+
 	}
 
 	@Override
@@ -63,6 +69,7 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 		tx.begin();
 		entityManager.merge(tipologiaEsame);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
@@ -70,7 +77,8 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		entityManager.remove(tipologiaEsame);
-		tx.commit();	
+		tx.commit();
+		this.closeEntityManagerAndFactory();
 	}
 
 }
