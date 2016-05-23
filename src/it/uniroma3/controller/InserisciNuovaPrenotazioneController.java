@@ -2,6 +2,7 @@ package it.uniroma3.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.TipologiaEsame;
+import it.uniroma3.persistence.MedicoDaoJPA;
 
 @WebServlet("/inserisciNuovaPrenotazione")
 public class InserisciNuovaPrenotazioneController extends HttpServlet {
@@ -23,10 +25,10 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<Medico> medici = getMedici();
-		ArrayList<TipologiaEsame> tipologieEsame = getTipologieEsame();
+		List<Medico> medici = getMedici();
+		//ArrayList<TipologiaEsame> tipologieEsame = getTipologieEsame();
 		req.setAttribute("medici",medici);
-		req.setAttribute("tipologieEsame", tipologieEsame);
+	//	req.setAttribute("tipologieEsame", tipologieEsame);
 		req.setAttribute("prova", "prova");  //x Davide
 		
 		ServletContext context = getServletContext();
@@ -34,9 +36,9 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
-	private ArrayList<Medico> getMedici() {
-		// TODO Auto-generated method stub
-		return null;
+	private List<Medico> getMedici() {
+		MedicoDaoJPA md = new MedicoDaoJPA();
+		return md.findAll();
 	}
 
 	private ArrayList<TipologiaEsame> getTipologieEsame() {

@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.NamedQuery;
+@NamedQuery(name = "findAll", query = "SELECT m FROM Medico m")
 @Entity
 public class Medico {
 	@Id

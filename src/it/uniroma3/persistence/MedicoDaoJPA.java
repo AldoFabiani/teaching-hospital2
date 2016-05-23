@@ -11,14 +11,13 @@ import javax.persistence.Query;
 
 import it.uniroma3.model.Medico;
 
-@NamedQuery(name = "findAll", query = "SELECT m FROM Medico m")
 public class MedicoDaoJPA implements MedicoDao {
 
 	private EntityManager entityManager;
+	private EntityManagerFactory factory;
 
 	public MedicoDaoJPA() {
-		EntityManagerFactory factory = 
-				Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -54,7 +53,10 @@ public class MedicoDaoJPA implements MedicoDao {
 	
 	@Override
 	public List<Medico> findAll() {
-		return this.entityManager.createNamedQuery("findAll").getResultList();
+		 List resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		 this.entityManager.close();
+		 this.factory.close();
+		 return resultList;
 	}
 
 	@Override
