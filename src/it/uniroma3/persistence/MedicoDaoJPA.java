@@ -29,7 +29,6 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		entityManager.persist(medico);
 		tx.commit();
-		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
@@ -38,7 +37,6 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		Medico medico = entityManager.find(Medico.class, id);
 		tx.commit();
-		this.closeEntityManagerAndFactory();
 		return medico;
 	}
 
@@ -49,7 +47,7 @@ public class MedicoDaoJPA implements MedicoDao {
 		queryFindByCodice.setParameter("codiceMedico", codiceMedico);
 		Medico medico = (Medico) queryFindByCodice.getSingleResult();
 		tx.commit();
-		this.closeEntityManagerAndFactory();
+	
 		return medico;
 	}
 
