@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import it.uniroma3.model.TipologiaEsame;
 
 @NamedQuery(name = "findAll", query = "SELECT t FROM TipologiaEsame t")
-public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   {
+public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
 
 	private EntityManager entityManager;
 	private EntityManagerFactory factory;
@@ -28,7 +28,6 @@ public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   
 		tx.begin();
 		entityManager.persist(tipologiaEsame);
 		tx.commit();
-		this.closeEntityManagerAndFactory();;
 	}
 
 	@Override
@@ -37,7 +36,6 @@ public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   
 		tx.begin();
 		TipologiaEsame tipologiaEsame = entityManager.find(TipologiaEsame.class, id);
 		tx.commit();
-		this.closeEntityManagerAndFactory();
 		return tipologiaEsame;
 	}
 
@@ -51,14 +49,12 @@ public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   
 		TipologiaEsame tipologiaEsame = 
 				(TipologiaEsame) queryFindByNome.getSingleResult();
 		tx.commit();
-		this.closeEntityManagerAndFactory();;
 		return tipologiaEsame;
 	}
 	
 	@Override
 	public List<TipologiaEsame> findAll() {
 		 List<TipologiaEsame> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
-		 this.closeEntityManagerAndFactory();
 		 return resultList;
 
 	}
@@ -69,7 +65,6 @@ public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   
 		tx.begin();
 		entityManager.merge(tipologiaEsame);
 		tx.commit();
-		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
@@ -78,7 +73,6 @@ public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao   
 		tx.begin();
 		entityManager.remove(tipologiaEsame);
 		tx.commit();
-		this.closeEntityManagerAndFactory();
 	}
 
 }

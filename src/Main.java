@@ -9,7 +9,9 @@ import it.uniroma3.persistence.MedicoDaoJPA;
 public class Main {
 public static void main(String[] args){
 	
-	MedicoDao medico = new MedicoDaoJPA();
-	medico.findAll();
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+	emf.createEntityManager();
+	emf.close();
+	
 }
 }

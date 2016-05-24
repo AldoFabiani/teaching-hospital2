@@ -1,6 +1,7 @@
 package it.uniroma3.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import com.google.gson.Gson;
 
@@ -34,8 +37,7 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 		List<Medico> medici = getMedici();
 		//ArrayList<TipologiaEsame> tipologieEsame = getTipologieEsame();
 		req.setAttribute("medici",medici);
-	//	req.setAttribute("tipologieEsame", tipologieEsame);
-		req.setAttribute("prova", "prova");  //x Davide
+	//	req.setAttribute("tipologieEsame", tipologieEsame);	
 		
 		String json = new Gson().toJson(medici);
 		resp.setContentType(APPLICATIONS_JSON);
