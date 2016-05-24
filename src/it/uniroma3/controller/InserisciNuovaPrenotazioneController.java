@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import com.google.gson.Gson;
+
 import it.uniroma3.model.Medico;
 
 import it.uniroma3.model.THWeb;
@@ -23,6 +25,8 @@ import it.uniroma3.persistence.MedicoDaoJPA;
 
 @WebServlet("/inserisciNuovaPrenotazione")
 public class InserisciNuovaPrenotazioneController extends HttpServlet {
+	private static final String UTF_8 = "UTF-8";
+	private static final String APPLICATIONS_JSON = "applications/json";
 	private static final long serialVersionUID = 1L;
 
 	public InserisciNuovaPrenotazioneController() {

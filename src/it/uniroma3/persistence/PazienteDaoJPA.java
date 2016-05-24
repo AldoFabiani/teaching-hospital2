@@ -15,10 +15,10 @@ import it.uniroma3.model.Paziente;
 public class PazienteDaoJPA implements PazienteDao {
 
 	private EntityManager entityManager;
+	private EntityManagerFactory factory;
 
 	public PazienteDaoJPA() {
-		EntityManagerFactory factory = 
-				Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -39,22 +39,21 @@ public class PazienteDaoJPA implements PazienteDao {
 		return paziente;
 	}
 
-	public Paziente findByCodiceFiscale(String codiceFiscalePaziente){
+	public Paziente findByCodiceFiscale(String codiceFiscalePaziente) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		Query queryFindByCodice = entityManager.createQuery(
-			    "SELECT p FROM Paziente p WHERE p.codiceFiscale = :codiceFiscalePaziente"
-			);
+		Query queryFindByCodice = entityManager
+				.createQuery("SELECT p FROM Paziente p WHERE p.codiceFiscale = :codiceFiscalePaziente");
 		queryFindByCodice.setParameter("codiceFiscalePaziente", codiceFiscalePaziente);
-		Paziente paziente = 
-				(Paziente) queryFindByCodice.getSingleResult();
+		Paziente paziente = (Paziente) queryFindByCodice.getSingleResult();
 		tx.commit();
 		return paziente;
 	}
-	
+
 	@Override
 	public List<Paziente> findAll() {
-		return this.entityManager.createNamedQuery("findAll").getResultList();
+		List<Paziente> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		return resultList;
 	}
 
 	@Override
@@ -70,7 +69,7 @@ public class PazienteDaoJPA implements PazienteDao {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		entityManager.remove(paziente);
-		tx.commit();	
+		tx.commit();
 	}
 
 }

@@ -9,6 +9,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.hibernate.sql.ordering.antlr.Factory;
+
 import it.uniroma3.model.Medico;
 
 public class MedicoDaoJPA implements MedicoDao {
@@ -38,19 +40,17 @@ public class MedicoDaoJPA implements MedicoDao {
 		return medico;
 	}
 
-	public Medico findByCodice(String codiceMedico){
+	public Medico findByCodice(String codiceMedico) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		Query queryFindByCodice = entityManager.createQuery(
-			    "SELECT m FROM Medico m WHERE m.codice = :codiceMedico"
-			);
+		Query queryFindByCodice = entityManager.createQuery("SELECT m FROM Medico m WHERE m.codice = :codiceMedico");
 		queryFindByCodice.setParameter("codiceMedico", codiceMedico);
-		Medico medico = 
-				(Medico) queryFindByCodice.getSingleResult();
+		Medico medico = (Medico) queryFindByCodice.getSingleResult();
 		tx.commit();
+	
 		return medico;
 	}
-	
+
 	@Override
 	public List<Medico> findAll() {
 		 List resultList = this.entityManager.createNamedQuery("findAll").getResultList();
@@ -65,6 +65,8 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		entityManager.merge(medico);
 		tx.commit();
+		this.entityManager.close();
+		this.factory.close();
 	}
 
 	@Override
@@ -72,7 +74,9 @@ public class MedicoDaoJPA implements MedicoDao {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		entityManager.remove(medico);
-		tx.commit();	
+		tx.commit();
+		this.entityManager.close();
+		this.factory.close();
 	}
 
 }

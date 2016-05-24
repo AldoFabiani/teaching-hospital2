@@ -42,6 +42,10 @@ public class Prenotazione {
 		this.paziente = paziente;
 		this.paziente.addPrenotazione(this);
 	}
+	
+	public Prenotazione(){
+		
+	}
 
 	public String getCodice() {
 		return codice;

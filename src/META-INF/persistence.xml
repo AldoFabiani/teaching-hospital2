@@ -5,13 +5,10 @@
 	<persistence-unit name="teaching-hospital-web-unit"
 		transaction-type="RESOURCE_LOCAL">
 		<class>it.uniroma3.model.Medico</class>
-		<class>it.uniroma3.model.Paziente</class>
-		<class>it.uniroma3.model.Prenotazione</class>
-		<class>it.uniroma3.model.TipologiaEsame</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
-			<property name="javax.persistence.jdbc.password" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="topolino" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/teaching" />
 			<!-- Hibernate properties -->
 			<property name="hibernate.show_sql" value="true" />

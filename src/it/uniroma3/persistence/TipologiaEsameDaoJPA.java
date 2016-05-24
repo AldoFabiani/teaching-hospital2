@@ -12,13 +12,13 @@ import javax.persistence.Query;
 import it.uniroma3.model.TipologiaEsame;
 
 @NamedQuery(name = "findAll", query = "SELECT t FROM TipologiaEsame t")
-public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
+public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
 
 	private EntityManager entityManager;
+	private EntityManagerFactory factory;
 
 	public TipologiaEsameDaoJPA() {
-		EntityManagerFactory factory = 
-				Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -54,7 +54,9 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 	
 	@Override
 	public List<TipologiaEsame> findAll() {
-		return this.entityManager.createNamedQuery("findAll").getResultList();
+		 List<TipologiaEsame> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		 return resultList;
+
 	}
 
 	@Override
@@ -70,7 +72,7 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		entityManager.remove(tipologiaEsame);
-		tx.commit();	
+		tx.commit();
 	}
 
 }
