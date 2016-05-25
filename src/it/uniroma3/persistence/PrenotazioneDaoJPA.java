@@ -12,13 +12,10 @@ import javax.persistence.Query;
 import it.uniroma3.model.Prenotazione;
 
 @NamedQuery(name = "findAll", query = "SELECT p FROM Prenotazione p")
-public class PrenotazioneDaoJPA implements PrenotazioneDao {
-
-	private EntityManager entityManager;
-	private EntityManagerFactory factory;
+public class PrenotazioneDaoJPA extends DaoJPA implements PrenotazioneDao {
 
 	public PrenotazioneDaoJPA() {
-		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		this.factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -28,6 +25,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		entityManager.persist(prenotazione);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 	}
 
 	@Override
@@ -36,6 +35,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		Prenotazione prenotazione = entityManager.find(Prenotazione.class, id);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 		return prenotazione;
 	}
 
@@ -47,12 +48,16 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		queryFindByCodice.setParameter("codicePrenotazione", codicePrenotazione);
 		Prenotazione prenotazione = (Prenotazione) queryFindByCodice.getSingleResult();
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 		return prenotazione;
 	}
 
 	@Override
 	public List<Prenotazione> findAll() {
 		List<Prenotazione> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		this.closeEntityManagerAndFactory();
+
 		return resultList;
 	}
 
@@ -62,6 +67,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		entityManager.merge(prenotazione);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 
 	}
 
@@ -71,6 +78,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 		tx.begin();
 		entityManager.remove(prenotazione);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 	}
 
 }

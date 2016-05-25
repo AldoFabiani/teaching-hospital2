@@ -11,19 +11,23 @@
 <script src="js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
-	<h2>Inserisci una prenotazione</h2>
-	<div id="container">
-		<div id="mediciContainer"
-			ng-controller="MediciController as mediciController">
-			<h4>Seleziona un medico</h4>
-			<div class="list-group">
-				<ul>
-					<li ng-repeat="medico in mediciController.medici">
-						{{medico.nome}}</li>
-				</ul>
+	<div ng-controller="InserimentoController as inserimentoCtrl">
+		<form name="inserimentoPrenotazione" ng-submit="inserimentoCtrl.aggiungiPrenotazione()">
+			<h2>Inserisci una prenotazione</h2>
+			<div id="container">
+				<!-- Inserimento-->
+				<lista-medici></lista-medici>
+				<lista-tipologie></lista-tipologie>
 			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block">Inserisci
+
+			<!-- Live preview -->
+			<div id="prenotazioneInserita">
+				<strong>Il medico è: {{inserimentoCtrl.medico.nome}}</strong>
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Inserisci
 				prenotazione</button>
-		</div>
+		</form>
+	</div>
 </body>
 </html>

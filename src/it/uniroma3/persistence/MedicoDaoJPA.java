@@ -13,13 +13,10 @@ import org.hibernate.sql.ordering.antlr.Factory;
 
 import it.uniroma3.model.Medico;
 
-public class MedicoDaoJPA implements MedicoDao {
-
-	private EntityManager entityManager;
-	private EntityManagerFactory factory;
+public class MedicoDaoJPA extends DaoJPA implements MedicoDao {
 
 	public MedicoDaoJPA() {
-		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		this.factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -29,6 +26,7 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		entityManager.persist(medico);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
@@ -37,6 +35,7 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		Medico medico = entityManager.find(Medico.class, id);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
 		return medico;
 	}
 
@@ -47,16 +46,15 @@ public class MedicoDaoJPA implements MedicoDao {
 		queryFindByCodice.setParameter("codiceMedico", codiceMedico);
 		Medico medico = (Medico) queryFindByCodice.getSingleResult();
 		tx.commit();
-	
+		this.closeEntityManagerAndFactory();
 		return medico;
 	}
 
 	@Override
 	public List<Medico> findAll() {
-		 List resultList = this.entityManager.createNamedQuery("findAll").getResultList();
-		 this.entityManager.close();
-		 this.factory.close();
-		 return resultList;
+		List resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		this.closeEntityManagerAndFactory();
+		return resultList;
 	}
 
 	@Override
@@ -65,8 +63,7 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		entityManager.merge(medico);
 		tx.commit();
-		this.entityManager.close();
-		this.factory.close();
+		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
@@ -75,8 +72,7 @@ public class MedicoDaoJPA implements MedicoDao {
 		tx.begin();
 		entityManager.remove(medico);
 		tx.commit();
-		this.entityManager.close();
-		this.factory.close();
+		this.closeEntityManagerAndFactory();
 	}
 
 }

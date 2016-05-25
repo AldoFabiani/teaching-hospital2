@@ -11,14 +11,10 @@ import javax.persistence.Query;
 
 import it.uniroma3.model.TipologiaEsame;
 
-@NamedQuery(name = "findAll", query = "SELECT t FROM TipologiaEsame t")
-public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
-
-	private EntityManager entityManager;
-	private EntityManagerFactory factory;
+public class TipologiaEsameDaoJPA extends DaoJPA implements TipologiaEsameDao {
 
 	public TipologiaEsameDaoJPA() {
-		factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
+		this.factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
@@ -28,6 +24,8 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
 		tx.begin();
 		entityManager.persist(tipologiaEsame);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 	}
 
 	@Override
@@ -36,26 +34,30 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
 		tx.begin();
 		TipologiaEsame tipologiaEsame = entityManager.find(TipologiaEsame.class, id);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 		return tipologiaEsame;
 	}
 
-	public TipologiaEsame findByNome(String nomeTipologia){
+	public TipologiaEsame findByNome(String nomeTipologia) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		Query queryFindByNome = entityManager.createQuery(
-			    "SELECT t FROM TipologiaEsame t WHERE t.nome = :nomeTipologia"
-			);
+		Query queryFindByNome = entityManager
+				.createQuery("SELECT t FROM TipologiaEsame t WHERE t.nome = :nomeTipologia");
 		queryFindByNome.setParameter("nomeTipologia", nomeTipologia);
-		TipologiaEsame tipologiaEsame = 
-				(TipologiaEsame) queryFindByNome.getSingleResult();
+		TipologiaEsame tipologiaEsame = (TipologiaEsame) queryFindByNome.getSingleResult();
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 		return tipologiaEsame;
 	}
-	
+
 	@Override
 	public List<TipologiaEsame> findAll() {
-		 List<TipologiaEsame> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
-		 return resultList;
+		List<TipologiaEsame> resultList = this.entityManager.createNamedQuery("findAllTipologie").getResultList();
+		this.closeEntityManagerAndFactory();
+
+		return resultList;
 
 	}
 
@@ -65,6 +67,8 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
 		tx.begin();
 		entityManager.merge(tipologiaEsame);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 	}
 
 	@Override
@@ -73,6 +77,8 @@ public class TipologiaEsameDaoJPA implements TipologiaEsameDao   {
 		tx.begin();
 		entityManager.remove(tipologiaEsame);
 		tx.commit();
+		this.closeEntityManagerAndFactory();
+
 	}
 
 }

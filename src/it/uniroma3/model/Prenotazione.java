@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -34,13 +35,13 @@ public class Prenotazione {
 
 	// E' davvero utile passare subito nel costruttore Medico e Paziente (in
 	// relazione ai casi d'uso?)
-	public Prenotazione(Date dataAvvenutaPrenotazione, Date dataEsame, Medico medico, Paziente paziente, TipologiaEsame tipologiaEsameCorrente) {
+	public Prenotazione(Date dataEsame, Medico medico, Paziente paziente, TipologiaEsame tipologiaEsameCorrente) {
 		this.codice= UUID.randomUUID().toString();
-		this.dataAvvenutaPrenotazione = dataAvvenutaPrenotazione;
+		this.dataAvvenutaPrenotazione = Calendar.getInstance().getTime();
 		this.dataEsame = dataEsame;
 		this.medico = medico;
 		this.paziente = paziente;
-		this.paziente.addPrenotazione(this);
+		//this.paziente.addPrenotazione(this);
 	}
 	
 	public Prenotazione(){

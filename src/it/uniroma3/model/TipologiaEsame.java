@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+@NamedQuery(name = "findAllTipologie", query = "SELECT t FROM TipologiaEsame t")
 
 @Entity
 public class TipologiaEsame {

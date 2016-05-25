@@ -1,0 +1,8 @@
+<div id="mediciContainer">
+	<h4>Seleziona un medico</h4>
+	<fieldset class="form-group">
+		<select ng-model="inserimentoCtrl.medico" class="form-control"
+			ng-options="medico.nome for medico in medici.medici" title="medico" name="medico">
+			<option value="">Scegli il medico</option>
+		</select>
+	</fieldset>

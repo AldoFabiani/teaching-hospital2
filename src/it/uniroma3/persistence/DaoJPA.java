@@ -5,10 +5,10 @@ import javax.persistence.EntityManagerFactory;
 
 public abstract class DaoJPA {
 	
-	private EntityManager entityManager;
-	private EntityManagerFactory factory;
+	protected EntityManager entityManager;
+	protected EntityManagerFactory factory;
 	
-	public void closeEntityManagerAndFactory(){
+	protected void closeEntityManagerAndFactory(){
 		entityManager.close();
 		factory.close();
 	}

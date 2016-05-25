@@ -3,7 +3,9 @@ package it.uniroma3.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -22,6 +24,8 @@ import it.uniroma3.model.Medico;
 import it.uniroma3.model.THWeb;
 import it.uniroma3.model.TipologiaEsame;
 import it.uniroma3.persistence.MedicoDaoJPA;
+import it.uniroma3.persistence.TipologiaEsameDao;
+import it.uniroma3.persistence.TipologiaEsameDaoJPA;
 
 @WebServlet("/inserisciNuovaPrenotazione")
 public class InserisciNuovaPrenotazioneController extends HttpServlet {
@@ -31,18 +35,20 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 
 	public InserisciNuovaPrenotazioneController() {
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Medico> medici = getMedici();
-		//ArrayList<TipologiaEsame> tipologieEsame = getTipologieEsame();
-		req.setAttribute("medici",medici);
-	//	req.setAttribute("tipologieEsame", tipologieEsame);	
-		
-		String json = new Gson().toJson(medici);
+		List<TipologiaEsame> tipologieEsame = getTipologieEsame();
+		req.setAttribute("medici", medici);
+		req.setAttribute("tipologieEsame", tipologieEsame);
+		Map<String,Object> mappa = new HashMap<>();
+		mappa.put("medici",medici);
+		mappa.put("tipologie",tipologieEsame);
+		String responseJson = new Gson().toJson(mappa);
 		resp.setContentType(APPLICATIONS_JSON);
 		resp.setCharacterEncoding(UTF_8);
-		resp.getWriter().write(json);;
+		resp.getWriter().write(responseJson);
 	}
 
 	private List<Medico> getMedici() {
@@ -50,8 +56,8 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 		return md.findAll();
 	}
 
-	private ArrayList<TipologiaEsame> getTipologieEsame() {
-		// TODO Auto-generated method stub
-		return null;
+	private List<TipologiaEsame> getTipologieEsame() {
+		TipologiaEsameDao tipologieEsameDao= new TipologiaEsameDaoJPA();
+		return tipologieEsameDao.findAll();
 	}
 }
