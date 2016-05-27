@@ -15,7 +15,12 @@ angular
 										controller : 'InserimentoPrenotazioneController as inserimentoPrenotazioneCtrl',
 										templateUrl : 'templates/inserisciPrenotazione.html',
 									})
-									
+							.when(
+									'/consultazioneTipologieEsamiOfferti',
+									{
+										controller:'ConsultazioneTipologieEsamiOfferti as consultazioneTipologieEsamiOffertiCtrl',
+										templateUrl:'templates/consultazioneTipologieEsamiOfferti.html',
+									})		
 									.otherwise({
 								redirectTo : '/'
 							});

@@ -1,26 +1,28 @@
-/**
- * 
- */
-
-angular.module('teaching').controller("ConsultazioneEsamiOffertiController",
-['http',function($http){
+angular.module('teaching').controller("ConsultazioneTipologieEsamiOfferti",
+['$http',function($http){
 	var self = this;
 	self.tipologie=[];
+	self.searchTipologie;
+	self.tipologia={};
 	
 	$http({
 		method: 'GET',
-	url:consultazioneTipologieEsamiOfferti,
+		url:'inserisciNuovaPrenotazione',
 	}).then(function successCallback(response){
-		self.tipologie=responde.data.tipologie;
-	})
+		self.tipologie=response.data.tipologie;
+	});
+	
+	// al click selezioni la tipologia
+	this.addTipologia = function(tipologia) {
+		self.tipologia = tipologia;
+		self.presente=true;
+		console.log(tipologia);
+	};
+
+
+
 } ]);
 	
-// al click selezioni la tipologia
-this.addTipologia = function(tipologia) {
-	self.tipologia = tipologia;
-};
-
-
 
 
 
