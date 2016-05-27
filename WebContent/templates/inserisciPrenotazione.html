@@ -1,126 +1,51 @@
-<!--TROVA PAZIENTE  -->
-<form name="trovaPaziente" class="form-inline"
-	ng-submit="inserimentoPrenotazioneCtrl.trovaPaziente()">
-	<div class="row">
-		<div class="col-md-12">
-			<h4>Paziente</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-9 col-xs-8">
-			<input ng-model="inserimentoPrenotazioneCtrl.codiceFiscalePaziente"
-				name="codiceFiscale" type="text" class="form-control"
-				id="codiceFiscale"
-				placeholder="Inserisci il codice fiscale del paziente">
-		</div>
-		<div class="col-md-3 col-xs-4">
-			<button type="submit" class="btn btn-default">Trova Paziente</button>
-		</div>
-	</div>
-</form>
-
-<div
-	ng-show="inserimentoPrenotazioneCtrl.hoProvato && !inserimentoPrenotazioneCtrl.paziente.nome"
-	id="pazienteNonTrovato">
-	<strong>Attenzione il paziente non è stato trovato!</strong>
-</div>
-
-<div ng-show="inserimentoPrenotazioneCtrl.paziente.nome" id="datiPaziente">
-	<div class="row">
-		<div class="col-md-12">
-			<h4>Dati del paziente:</h4>
-			<dl class="dl-horizontal">
-				<dt>Codice Fiscale</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.codiceFiscale}}</dd>
-				<dt>Nome</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.nome}}</dd>
-				<dt>Cognome</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.cognome}}</dd>
-				<dt>Data di nascita</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.dataNascita}}</dd>
-				<dt>Indirizzo</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.indirizzo}}</dd>
-				<dt>Email</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.email}}</dd>
-				<dt>Telefono</dt>
-				<dd>{{inserimentoPrenotazioneCtrl.paziente.telefono}}</dd>
-			</dl>
-		</div>
-	</div>
-</div>
-
+<h2>Prenotazione</h2>
 <form name="inserimentoPrenotazione"
 	ng-submit="inserimentoPrenotazioneCtrl.aggiungiPrenotazione()">
+	<!--TROVA PAZIENTE  -->
+	<form name="trovaPaziente" class="form-inline"
+		ng-submit="inserimentoPrenotazioneCtrl.trovaPaziente()">
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Paziente</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9 col-xs-8">
+				<input ng-model="inserimentoPrenotazioneCtrl.codiceFiscalePaziente"
+					name="codiceFiscale" type="text" class="form-control"
+					id="codiceFiscale"
+					placeholder="Inserisci il codice fiscale del paziente">
+			</div>
+			<div class="col-md-3 col-xs-4">
+				<button type="submit" class="btn btn-default">Trova
+					Paziente</button>
+			</div>
+		</div>
+	</form>
 
-
-	<!-- Inserimento Medico-->
-	<div class="row">
-		<div class="col-md-2 col-xs-4">
-			<h4>Medico</h4>
-		</div>
-		<div class="col-md-offset-7 col-md-3 col-xs-8">
-			<input type="text" ng-model="inserimentoPrenotazioneCtrl.searchMedici"
-				class="form-control" id="projects_search"
-				placeholder="Inserisci la specializzazione...">
-		</div>
-	</div>
-	<div id="mediciContainer">
-		<div class="list-group">
-		<ul>
-			<li
-				ng-repeat="medico in inserimentoPrenotazioneCtrl.medici | filter:inserimentoPrenotazioneCtrl.searchMedici | orderBy:'specializzazione'"
-				title="medico" name="medico"
-				ng-click="inserimentoPrenotazioneCtrl.addMedico(medico)" class="list-group-item">{{medico.nome}}
-				{{medico.cognome}} <em class="specializzazione">Specializzazione:
-					{{medico.specializzazione}}</em>
-			</li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Inserimento Tipologia-->
-	<div class="row">
-		<div class="col-md-2 col-xs-4">
-			<h4>Tipologia</h4>
-		</div>
-		<div class="col-md-offset-7 col-md-3 col-xs-8">
-			<input type="text" ng-model="inserimentoPrenotazioneCtrl.searchTipologie"
-				class="form-control" id="projects_search"
-				placeholder="Inserisci il nome...">
-		</div>
-	</div>
-	<div id="tipologieContainer">
-		<div class="list-group">
-			<ul>
-				<li
-					ng-repeat="tipologia in inserimentoPrenotazioneCtrl.tipologie | filter:inserimentoPrenotazioneCtrl.searchTipologie | orderBy:'nome'"
-					title="tipologia" name="tipologia"
-					ng-click="inserimentoPrenotazioneCtrl.addTipologia(tipologia)"
-					class="list-group-item">{{tipologia.nome}} {{tipologia.costo |
-					currency}}</li>
-			</ul>
-		</div>
+	<div
+		ng-show="inserimentoPrenotazioneCtrl.hoProvato && !inserimentoPrenotazioneCtrl.paziente.nome"
+		id="pazienteNonTrovato">
+		<strong>Attenzione il paziente non è stato trovato!</strong>
 	</div>
 
+	<div ng-show="inserimentoPrenotazioneCtrl.paziente.nome"
+		id="datiPaziente" ng-include="templates/datiPaziente.html"></div>
 
-
-
-
-
-	<lista-tipologie></lista-tipologie>
-
-	<!-- Live preview -->
-	<div id="prenotazioneInserita">
-		<strong>Il medico è: {{inserimentoPrenotazioneCtrl.medico.nome}}</strong> <strong>La
-			tipologia è: {{inserimentoPrenotazioneCtrl.tipologia.nome}}</strong><strong>La
-			data è: {{inserimentoPrenotazioneCtrl.dataEsame}}</strong>
-	</div>
-
+	<!--SELEZIONA MEDICO  -->
+	<div id="mediciContainer" ng-include="'templates/selezionaMedico.html'"></div>
+	<!--SELEZIONA TIPOLOGIA -->
+	<div ng-include="'templates/selezionaTipologia.html'"
+		id="tipologiaContainer"></div>
+	<!--SELEZIONA DATA -->
 	<h4>Data Esame</h4>
 	<input type="date" name="dataEsame" placeholder="Inserisci la data..."
 		ng-model="inserimentoPrenotazioneCtrl.dataEsame">
 
+	<!-- Live preview -->
+	<div id="prenotazioneInserita"
+		ng-include="'templates/previewPrenotazione.html'"></div>
+
 	<button type="submit" class="btn btn-primary btn-lg btn-block">Inserisci
 		prenotazione</button>
 </form>
-</div>
