@@ -40,8 +40,6 @@ public class InserisciNuovaPrenotazioneController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Medico> medici = getMedici();
 		List<TipologiaEsame> tipologieEsame = getTipologieEsame();
-		req.setAttribute("medici", medici);
-		req.setAttribute("tipologieEsame", tipologieEsame);
 		Map<String,Object> mappa = new HashMap<>();
 		mappa.put("medici",medici);
 		mappa.put("tipologie",tipologieEsame);
