@@ -11,7 +11,6 @@ import javax.persistence.Query;
 
 import it.uniroma3.model.Prenotazione;
 
-@NamedQuery(name = "findAll", query = "SELECT p FROM Prenotazione p")
 public class PrenotazioneDaoJPA extends DaoJPA implements PrenotazioneDao {
 
 	public PrenotazioneDaoJPA() {
@@ -55,7 +54,7 @@ public class PrenotazioneDaoJPA extends DaoJPA implements PrenotazioneDao {
 
 	@Override
 	public List<Prenotazione> findAll() {
-		List<Prenotazione> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		List<Prenotazione> resultList = this.entityManager.createNamedQuery("findAllPrenotazioni").getResultList();
 		this.closeEntityManagerAndFactory();
 
 		return resultList;

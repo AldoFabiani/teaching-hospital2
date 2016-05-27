@@ -10,10 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ManyToAny;
+
+@NamedQuery(name = "findAllPrenotazioni", query = "SELECT p FROM Prenotazione p")
 
 @Entity
 public class Prenotazione {
@@ -33,19 +36,19 @@ public class Prenotazione {
 	@ManyToOne
 	private TipologiaEsame tipologiaEsame;
 
+	public Prenotazione() {
+	}
+
 	// E' davvero utile passare subito nel costruttore Medico e Paziente (in
 	// relazione ai casi d'uso?)
 	public Prenotazione(Date dataEsame, Medico medico, Paziente paziente, TipologiaEsame tipologiaEsameCorrente) {
-		this.codice= UUID.randomUUID().toString();
+		this.codice = UUID.randomUUID().toString();
 		this.dataAvvenutaPrenotazione = Calendar.getInstance().getTime();
 		this.dataEsame = dataEsame;
 		this.medico = medico;
 		this.paziente = paziente;
+		this.tipologiaEsame=tipologiaEsameCorrente;
 		//this.paziente.addPrenotazione(this);
-	}
-	
-	public Prenotazione(){
-		
 	}
 
 	public String getCodice() {
@@ -95,14 +98,15 @@ public class Prenotazione {
 	public void setTipologiaEsame(TipologiaEsame tipologiaEsame) {
 		this.tipologiaEsame = tipologiaEsame;
 	}
-	
-	//TODO equals e hashcode sul codice
+
+	// TODO equals e hashcode sul codice
 
 	@Override
 	public boolean equals(Object obj) {
-		Prenotazione exam = (Prenotazione)obj;
+		Prenotazione exam = (Prenotazione) obj;
 		return this.getCodice().equals(exam.getCodice());
 	}
+
 	@Override
 	public int hashCode() {
 		return this.getCodice().hashCode();

@@ -11,7 +11,6 @@ import javax.persistence.Query;
 
 import it.uniroma3.model.Paziente;
 
-@NamedQuery(name = "findAll", query = "SELECT p FROM Paziente p")
 public class PazienteDaoJPA extends DaoJPA implements PazienteDao {
 
 	public PazienteDaoJPA() {
@@ -48,13 +47,12 @@ public class PazienteDaoJPA extends DaoJPA implements PazienteDao {
 		Paziente paziente = (Paziente) queryFindByCodice.getSingleResult();
 		tx.commit();
 		this.closeEntityManagerAndFactory();
-
 		return paziente;
 	}
 
 	@Override
 	public List<Paziente> findAll() {
-		List<Paziente> resultList = this.entityManager.createNamedQuery("findAll").getResultList();
+		List<Paziente> resultList = this.entityManager.createNamedQuery("findAllPazienti").getResultList();
 		this.closeEntityManagerAndFactory();
 
 		return resultList;

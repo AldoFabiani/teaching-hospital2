@@ -2,17 +2,22 @@ package it.uniroma3.model;
 
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQuery(name = "findAllPazienti", query = "SELECT p FROM Paziente p")
 @Entity
 public class Paziente {
 	@Id
@@ -32,9 +37,13 @@ public class Paziente {
 	@Column(nullable = false, unique = true)
 	private String email;
 	private String telefono;
-	@OneToMany(mappedBy = "paziente")
-	private List<Prenotazione> prenotazioni;
+//	@OneToMany(fetch=FetchType.EAGER, mappedBy = "paziente")
+//	private List<Prenotazione> prenotazioni;
 
+	public Paziente() {
+		//prenotazioni=null;
+	}
+	
 	public Paziente(String nome, String cognome, String codiceFiscale, String indirizzo, Date dataNascita,
 			String telefono, String email) {
 		this.codiceFiscale = codiceFiscale;
@@ -45,7 +54,7 @@ public class Paziente {
 		this.password = null; 
 		this.email = email;
 		this.telefono = telefono;
-		this.prenotazioni = new ArrayList<>();
+		//this.prenotazioni = new ArrayList<>();
 	}
 
 	public String getNome() {
@@ -104,9 +113,9 @@ public class Paziente {
 		this.email = email;
 	}
 
-	public void addPrenotazione(Prenotazione prenotazione) {
-		this.prenotazioni.add(prenotazione);
-	}
+//	public void addPrenotazione(Prenotazione prenotazione) {
+//		this.prenotazioni.add(prenotazione);
+//	}
 
 	// TODO equals e hashcode sul codiceFiscale
 

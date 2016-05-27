@@ -1,8 +1,22 @@
+<div class="row">
+
+	<script src="js/listgroup.min.js"></script>
+	<div class="col-md-2 col-xs-4">
+		<h4>Medico</h4>
+	</div>
+	<div class="col-md-offset-7 col-md-3 col-xs-8">
+		<input type="text" ng-model="medici.search" class="form-control"
+			id="projects_search" placeholder="Inserisci la specializzazione...">
+	</div>
+</div>
 <div id="mediciContainer">
-	<h4>Seleziona un medico</h4>
-	<fieldset class="form-group">
-		<select ng-model="inserimentoCtrl.medico" class="form-control"
-			ng-options="medico.nome for medico in medici.medici" title="medico" name="medico">
-			<option value="">Scegli il medico</option>
-		</select>
-	</fieldset>
+	<div class="list-group">
+		<span
+			ng-repeat="medico in medici.medici | filter:medici.search | orderBy:'specializzazione'"
+			title="medico" name="medico"
+			ng-click="inserimentoCtrl.addMedico(medico)" class="list-group-item">{{medico.nome}}
+			{{medico.cognome}} <em class="specializzazione">Specializzazione: {{medico.specializzazione}}</em></span>
+	</div>
+</div>
+
+
