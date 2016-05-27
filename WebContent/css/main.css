@@ -22,12 +22,21 @@ dt {
 	text-align: left !important;
 }
 
-#mediciContainer .list-group , #tipologieContainer .list-group {
-	overflow: scroll;
-	height: 150px;
-	cursor: pointer;
-}
-
 .specializzazione {
 	text-align: right;
 }
+
+.white-title {
+	color: white;
+}
+.list-group ul{
+	padding-left:0;
+	cursor:pointer;
+}
+.list-group li:HOVER {
+	color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
+

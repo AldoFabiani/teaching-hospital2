@@ -15,7 +15,7 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 			self.codiceFiscalePaziente;
 			//booleano per ng-show e hide
 			self.hoCercatoPaziente = false;
-			
+			self.previewPronto = true;
 			//per i filtri
 			self.searchMedici;
 			self.searchTipologie;
@@ -32,6 +32,7 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 			// se è presente carica il paziente per mostrarlo all'amministratore
 			// durante la conferma
 			this.trovaPaziente = function() {
+				$("#myButton").button('loading');
 				$http({
 					method : 'GET',
 					url : 'findPaziente',
@@ -41,12 +42,15 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 					params : {
 						codiceFiscale : self.codiceFiscalePaziente
 					}
-				}).then(function successCallback(response) {
+				}).then(function(response) {
 					self.paziente = response.data;
 					self.hoCercatoPaziente = true;
-				}, function errorCallback(response) {
+					$("#myButton").button('reset');
+
+				}, function(response) {
 					self.paziente = {};
 					self.hoCercatoPaziente = true;
+					$("#myButton").button('reset');
 				});
 			};
 
@@ -76,6 +80,11 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 					}
 				}).success(function(data) {
 					console.log(data);
+					$('input').val('');
+					self.paziente = {};
+					self.hoCercatoPaziente = false;
+					$('li').removeClass('active');
+					$('#prenotazioneAggiunta').modal('hide');
 				});
 			};
 

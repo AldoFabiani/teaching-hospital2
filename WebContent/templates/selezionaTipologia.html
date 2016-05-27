@@ -10,11 +10,14 @@
 			placeholder="Inserisci il nome...">
 	</div>
 </div>
+
+<script type="text/javascript" src="js/listgroup.min.js"></script>
 <div class="list-group">
-	<span
-		ng-repeat="tipologia in inserimentoPrenotazioneCtrl.tipologie | filter:inserimentoPrenotazioneCtrl.searchTipologie | orderBy:'nome'"
-		title="tipologia" name="tipologia"
-		ng-click="inserimentoPrenotazioneCtrl.addTipologia(tipologia)"
-		class="list-group-item">{{tipologia.nome}} {{tipologia.costo |
-		currency:"€"}}</span>
+	<ul class="list-group">
+		<li class="list-group-item"
+			ng-repeat="tipologia in inserimentoPrenotazioneCtrl.tipologie | filter:inserimentoPrenotazioneCtrl.searchTipologie | orderBy:'nome'"
+			title="tipologia" name="tipologia"
+			ng-click="inserimentoPrenotazioneCtrl.addTipologia(tipologia)">{{tipologia.nome}}
+			{{tipologia.costo | currency:"€"}}</li>
+	</ul>
 </div>
