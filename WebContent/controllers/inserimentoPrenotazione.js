@@ -1,26 +1,36 @@
-angular.module('teaching').controller("InserimentoController",
+angular.module('teaching').controller("InserimentoPrenotazioneController",
 		[ '$http', function($http) {
+			//mi salvo il contesto della funzione
 			var self = this;
+			
+			//liste bindate e caricate dal GET
 			self.tipologie = [];
 			self.medici = [];
+			
+			//medico, tipologia, paziente e data esame selezionati
 			self.medico = {};
 			self.tipologia = {};
-			self.paziente = {};
 			self.dataEsame;
+			self.paziente = {};
 			self.codiceFiscalePaziente;
-			self.hoProvato = false;
+			//booleano per ng-show e hide
+			self.hoCercatoPaziente = false;
+			
+			//per i filtri
 			self.searchMedici;
 			self.searchTipologie;
 
+			// GET per la lista delle tipologie e la lista dei medici
 			$http({
 				method : 'GET',
 				url : 'inserisciNuovaPrenotazione',
 			}).then(function successCallback(response) {
-				console.log(response);
 				self.medici = response.data.medici;
 				self.tipologie = response.data.tipologie;
 			});
 
+			// se è presente carica il paziente per mostrarlo all'amministratore
+			// durante la conferma
 			this.trovaPaziente = function() {
 				$http({
 					method : 'GET',
@@ -32,25 +42,26 @@ angular.module('teaching').controller("InserimentoController",
 						codiceFiscale : self.codiceFiscalePaziente
 					}
 				}).then(function successCallback(response) {
-					console.log(response);
 					self.paziente = response.data;
-					self.hoProvato = true;
+					self.hoCercatoPaziente = true;
 				}, function errorCallback(response) {
 					self.paziente = {};
-					self.hoProvato = true;
+					self.hoCercatoPaziente = true;
 				});
 			};
 
+			// al click selezioni il medico
 			this.addMedico = function(medico) {
 				self.medico = medico;
 			};
 
+			// al click selezioni la tipologia
 			this.addTipologia = function(tipologia) {
 				self.tipologia = tipologia;
 			};
 
+			// aggiungi una prenotazione nella base di dati
 			this.aggiungiPrenotazione = function() {
-
 				$http({
 					method : 'POST',
 					url : 'inserisciPrenotazione',
@@ -64,7 +75,6 @@ angular.module('teaching').controller("InserimentoController",
 						dataEsame : self.dataEsame
 					}
 				}).success(function(data) {
-					console.log(self.medico.codice);
 					console.log(data);
 				});
 			};

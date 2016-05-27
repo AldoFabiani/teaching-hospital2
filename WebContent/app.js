@@ -6,13 +6,13 @@ angular
 							.when(
 									'/inserimentoPrenotazione',
 									{
-										controller : 'InserimentoController as inserimentoCtrl',
+										controller : 'InserimentoPrenotazioneController as inserimentoPrenotazioneCtrl',
 										templateUrl : 'templates/inserisciPrenotazione.html',
 									})
 							.when(
 									'/inserimentoPrenotazione/:pazienteCodiceFiscale',
 									{
-										controller : 'InserimentoController as inserimentoCtrl',
+										controller : 'InserimentoPrenotazioneController as inserimentoPrenotazioneCtrl',
 										templateUrl : 'templates/inserisciPrenotazione.html',
 									})
 									.otherwise({
