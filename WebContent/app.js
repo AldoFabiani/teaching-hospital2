@@ -15,6 +15,7 @@ angular
 										controller : 'InserimentoPrenotazioneController as inserimentoPrenotazioneCtrl',
 										templateUrl : 'templates/inserisciPrenotazione.html',
 									})
+									
 									.otherwise({
 								redirectTo : '/'
 							});
