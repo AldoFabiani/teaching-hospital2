@@ -3,7 +3,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.plaf.metal.MetalDesktopIconUI;
 
+import it.uniroma3.model.IndicatoreDiRisultato;
 import it.uniroma3.model.Medico;
+import it.uniroma3.model.NormaDiPreparazione;
 import it.uniroma3.model.Paziente;
 import it.uniroma3.model.TipologiaEsame;
 import it.uniroma3.persistence.MedicoDao;
@@ -13,15 +15,11 @@ import it.uniroma3.persistence.TipologiaEsameDaoJPA;
 
 public class Main {
 public static void main(String[] args){
-	MedicoDaoJPA medicoDao=new MedicoDaoJPA();
-	Medico medico = medicoDao.findByPrimaryKey((long) 1);
-	TipologiaEsameDaoJPA tip = new TipologiaEsameDaoJPA();
-	TipologiaEsame tipo = tip.findByPrimaryKey((long) 1);
-PazienteDaoJPA pazienteDao = new PazienteDaoJPA();
-Paziente findByCodiceFiscale = pazienteDao.findByCodiceFiscale("RLNDVD94D12H501J");
-System.out.println(medico);
-System.out.println(tipo);
-System.out.println(findByCodiceFiscale.getNome());
-	
+	TipologiaEsame t = new TipologiaEsame("tipo1","una tipologia",5F);
+	t.addNormaDiPreparazione(new NormaDiPreparazione("no-pregnant","esame vietato per donne incinte"));
+	t.addNormaDiPreparazione(new NormaDiPreparazione("no-aldarelli","esame vietato per aldarelli"));
+	t.addIndicatoreDiRisultato(new IndicatoreDiRisultato("da quanto sei incinta"));
+	TipologiaEsameDaoJPA dao = new TipologiaEsameDaoJPA();
+	dao.save(t);
 }
 }

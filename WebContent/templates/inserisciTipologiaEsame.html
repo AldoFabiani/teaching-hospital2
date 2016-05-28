@@ -1,0 +1,128 @@
+<!-- Inserimento norme-->
+<div>
+	<form>
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Nome</h4>
+			</div>
+			<div class="col-md-offset-1 col-md-9 col-xs-8">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.nomeTipologiaEsame"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci il nome della tipologia...">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Descrizione</h4>
+			</div>
+			<div class="col-md-offset-1 col-md-9 col-xs-8">
+				<textarea
+					ng-model="inserimentoTipologiaEsameCtrl.descrizioneTipologiaEsame"
+					class="form-control" rows="5" id="descrizione"
+					placeholder="Inserisci una norma..."></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Costo</h4>
+			</div>
+			<div class="col-md-offset-1 col-md-9 col-xs-8">
+				<input type="number" min="1" step="any"
+					ng-model="inserimentoTipologiaEsameCtrl.costoTipologiaEsame"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci il costo...">
+			</div>
+		</div>
+		<div class="row">
+			<!-- Inserimento indicatori-->
+
+			<div class="col-md-2 col-xs-4">
+				<h4>Norme</h4>
+			</div>
+			<div class="col-md-offset-7 col-md-3 col-xs-8">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.searchNormeDiPreparazione"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci una norma...">
+			</div>
+		</div>
+		<div class="row">
+			<div id="normeContainer">
+				<div class="checkbox"
+					ng-repeat="norma in inserimentoTipologiaEsameCtrl.normeDiPreparazione | filter:inserimentoTipologiaEsameCtrl.searchNormeDiPreparazione | orderBy:'nome'"
+					title="norma" name="norma">
+					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusNormeDiPreparazione($event, norma)" value="">{{norma.nome}}</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		<label>Vuoi inserire una nuova tipologia?</label>
+			<div class="col-md-4">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.nomeNuovaTipologia"
+					placeholder="Inserisci il nome...">
+			</div>
+			<div class="col-md-4">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.descrizioneNuovaTipologia"
+					placeholder="Inserisci la descrizione...">
+			</div>
+			<div class="col-md-4">
+				<button type="button" class="btn btn-primary-outline" ng-click="inserimentoTipologiaEsameCtrl.nuovaNormaDiPreparazione()">
+				New!</button>
+			</div>
+		</div>
+		
+		<div class="row">
+			<!-- Inserimento indicatori-->
+
+			<div class="col-md-2 col-xs-4">
+				<h4>Indicatori</h4>
+			</div>
+			<div class="col-md-offset-7 col-md-3 col-xs-8">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci un indicatore...">
+			</div>
+		</div>
+		<div class="row">
+			<div id="indicatoriContainer">
+
+				<div class="checkbox"
+					ng-repeat="indicatore in inserimentoTipologiaEsameCtrl.indicatoriDiRisultato | filter:inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato | orderBy:'nome'"
+					title="indicatore" name="indicatore">
+					<label><input type="checkbox" value="">{{indicatore.nome}}</label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Live preview -->
+		<div id="prenotazioneInserita">
+			<ul>
+				<li>Il nome della tipologia è:
+					{{inserimentoTipologiaEsameCtrl.nomeTipologiaEsame}}</li>
+				<li>La descrizione è:
+					{{inserimentoTipologiaEsameCtrl.descrizioneTipologiaEsame}}</li>
+				<li>Il costo è:
+					{{inserimentoTipologiaEsameCtrl.costoTipologiaEsame}}</li>
+				<li>La lista di norme è:
+					{{inserimentoTipologiaEsameCtrl.normeTipologiaEsame}}</li>
+				<li>La lista di indicatori è:
+					{{inserimentoTipologiaEsameCtrl.indicatoriTipologiaEsame}}</li>
+			</ul>
+		</div>
+
+
+
+
+		<div class="row">
+
+
+
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Inserisci
+				tipologia</button>
+		</div>
+	</form>
+</div>
