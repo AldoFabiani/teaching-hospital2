@@ -27,13 +27,7 @@ angular
 									{
 										controller:'ConsultazioneTipologieEsamiOfferti as consultazioneTipologieEsamiOffertiCtrl',
 										templateUrl:'templates/consultazioneTipologieEsamiOfferti.html',
-									})		
-							.when(
-									'/consultazioneTipologieEsamiOfferti',
-									{
-										controller:'ConsultazioneTipologieEsamiOfferti as consultazioneTipologieEsamiOffertiCtrl',
-										templateUrl:'templates/consultazioneTipologieEsamiOfferti.html',
-									})		
+									})				
 									.otherwise({
 								redirectTo : '/'
 							});
