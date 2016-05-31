@@ -33,7 +33,7 @@ public class Paziente {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascita;
 	// Dovrà essere nullable = false
-	private String password;
+
 	@Column(nullable = false, unique = true)
 	private String email;
 	private String telefono;
@@ -51,7 +51,6 @@ public class Paziente {
 		this.cognome = cognome;
 		this.indirizzo = indirizzo;
 		this.dataNascita = dataNascita;
-		this.password = null; 
 		this.email = email;
 		this.telefono = telefono;
 		//this.prenotazioni = new ArrayList<>();

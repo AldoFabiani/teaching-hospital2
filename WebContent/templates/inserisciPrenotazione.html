@@ -16,7 +16,9 @@
 				placeholder="Inserisci il codice fiscale del paziente">
 		</div>
 		<div class="col-md-3 col-xs-4">
-			<button autocomplete="off" data-loading-text="Loading..."  id="myButton" type="submit" class="btn btn-default">Trova Paziente</button>
+			<button autocomplete="off" data-loading-text="Loading..."
+				id="myButton" type="submit" class="btn btn-default">Trova
+				Paziente</button>
 		</div>
 	</div>
 </form>
@@ -27,8 +29,18 @@
 	<strong>Attenzione il paziente non è stato trovato!</strong>
 </div>
 
-<div ng-include="'templates/datiPaziente.html'" id="datiPaziente"
-	ng-show="inserimentoPrenotazioneCtrl.paziente.nome"></div>
+<div id="datiPaziente"
+	ng-show="inserimentoPrenotazioneCtrl.paziente.nome" class="row">
+	<div class="col-md-12">
+		<h4>Dati del paziente:</h4>
+		<dl class="dl-horizontal">
+			<div ng-repeat="(key,value) in inserimentoPrenotazioneCtrl.paziente">
+				<dt class="first-letter-capital">{{key}}</dt>
+				<dd>{{value}}</dd>
+			</div>
+	</div>
+</div>
+
 <form name="inserimentoPrenotazione"
 	ng-submit="inserimentoPrenotazioneCtrl.aggiungiPrenotazione()">
 	<!--SELEZIONA MEDICO  -->
@@ -49,11 +61,11 @@
 				ng-model="inserimentoPrenotazioneCtrl.dataEsame">
 		</div>
 		<div class="col-md-9">
-			<button type="button" class="btn btn-primary btn-lg"
+			<button ng-click="inserimentoPrenotazioneCtrl.makeNewPrenotazione()" type="button" class="btn btn-primary btn-lg"
 				data-toggle="modal" data-target="#prenotazioneAggiunta">Aggiungi
 				Prenotazione</button>
 		</div>
 	</div>
-	<div ng-include="'templates/previewPrenotazione.html'"
+	<div ng-include="'view/preview/previewPrenotazione.html'"
 		ng-show="inserimentoPrenotazioneCtrl.previewPronto"></div>
 </form>
