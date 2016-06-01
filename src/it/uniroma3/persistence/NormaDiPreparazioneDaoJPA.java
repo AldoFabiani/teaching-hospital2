@@ -18,25 +18,25 @@ public class NormaDiPreparazioneDaoJPA extends DaoJPA implements NormaDiPreparaz
 		this.entityManager = factory.createEntityManager();
 	}
 
-//	@Override
-//	public void save(NormaDiPreparazione normaDiPreparazione) {
-//		EntityTransaction tx = this.entityManager.getTransaction();
-//		tx.begin();
-//		entityManager.persist(normaDiPreparazione);
-//		tx.commit();
-//		this.closeEntityManagerAndFactory();
-//	}
+	@Override
+	public void save(NormaDiPreparazione normaDiPreparazione) {
+		EntityTransaction tx = this.entityManager.getTransaction();
+		tx.begin();
+		entityManager.persist(normaDiPreparazione);
+		tx.commit();
+		this.closeEntityManagerAndFactory();
+	}
 
-//	@Override
-//	public NormaDiPreparazione findByPrimaryKey(Long id) {
-//		EntityTransaction tx = this.entityManager.getTransaction();
-//		tx.begin();
-//		NormaDiPreparazione normaDiPreparazione = entityManager.find(NormaDiPreparazione.class, id);
-//		tx.commit();
-//		this.closeEntityManagerAndFactory();
-//
-//		return normaDiPreparazione;
-//	}
+	@Override
+	public NormaDiPreparazione findByPrimaryKey(Long id) {
+		EntityTransaction tx = this.entityManager.getTransaction();
+		tx.begin();
+		NormaDiPreparazione normaDiPreparazione = entityManager.find(NormaDiPreparazione.class, id);
+		tx.commit();
+		this.closeEntityManagerAndFactory();
+
+		return normaDiPreparazione;
+	}
 
 	public NormaDiPreparazione findByNome(String nomeNormaDiPreparazione) {
 		EntityTransaction tx = this.entityManager.getTransaction();

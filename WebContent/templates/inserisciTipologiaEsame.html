@@ -1,6 +1,6 @@
 <!-- Inserimento norme-->
 <div>
-	<form>
+	<form ng-submit="inserimentoTipologiaEsameCtrl.aggiungiTipologiaEsame()">
 		<div class="row">
 			<div class="col-md-2 col-xs-4">
 				<h4>Nome</h4>
@@ -34,9 +34,9 @@
 					placeholder="Inserisci il costo...">
 			</div>
 		</div>
-		<div class="row">
-			<!-- Inserimento indicatori-->
 
+		<!-- Inserimento norme-->
+		<div class="row">
 			<div class="col-md-2 col-xs-4">
 				<h4>Norme</h4>
 			</div>
@@ -52,30 +52,26 @@
 				<div class="checkbox"
 					ng-repeat="norma in inserimentoTipologiaEsameCtrl.normeDiPreparazione | filter:inserimentoTipologiaEsameCtrl.searchNormeDiPreparazione | orderBy:'nome'"
 					title="norma" name="norma">
-					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusNormeDiPreparazione($event, norma)" value="">{{norma.nome}}</label>
+					<label><input type="checkbox"
+						ng-click="inserimentoTipologiaEsameCtrl.changedStatusNormeDiPreparazione($event, norma)"
+						value="">{{norma.nome}}</label>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-		<label>Vuoi inserire una nuova tipologia?</label>
 			<div class="col-md-4">
-				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.nomeNuovaTipologia"
-					placeholder="Inserisci il nome...">
+				<label>Vuoi inserire una nuova norma?</label>
 			</div>
-			<div class="col-md-4">
-				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.descrizioneNuovaTipologia"
-					placeholder="Inserisci la descrizione...">
-			</div>
-			<div class="col-md-4">
-				<button type="button" class="btn btn-primary-outline" ng-click="inserimentoTipologiaEsameCtrl.nuovaNormaDiPreparazione()">
-				New!</button>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-primary-outline"
+					data-toggle="modal" data-target="#inserimentoNormaDiPreparazione">
+					New!</button>
 			</div>
 		</div>
-		
+		<div ng-include="'templates/inserisciNormaDiPreparazione.html'"></div>
+
+		<!-- Inserimento indicatori-->
 		<div class="row">
-			<!-- Inserimento indicatori-->
 
 			<div class="col-md-2 col-xs-4">
 				<h4>Indicatori</h4>
@@ -93,10 +89,23 @@
 				<div class="checkbox"
 					ng-repeat="indicatore in inserimentoTipologiaEsameCtrl.indicatoriDiRisultato | filter:inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato | orderBy:'nome'"
 					title="indicatore" name="indicatore">
-					<label><input type="checkbox" value="">{{indicatore.nome}}</label>
+					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatoriDiRisultato($event, indicatore)"
+					value="">{{indicatore.nome}}</label>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label>Vuoi inserire un nuovo indicatore?</label>
+			</div>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-primary-outline"
+					data-toggle="modal" data-target="#inserimentoIndicatoreDiRisultato">
+					New!</button>
+			</div>
+		</div>
+		<div ng-include="'templates/inserisciIndicatoreDiRisultato.html'"></div>
+
 
 		<!-- Live preview -->
 		<div id="prenotazioneInserita">
@@ -115,14 +124,9 @@
 		</div>
 
 
-
-
 		<div class="row">
-
-
-
-			<button type="submit" class="btn btn-primary btn-lg btn-block">Inserisci
-				tipologia</button>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">
+			Inserisci tipologia</button>
 		</div>
 	</form>
 </div>

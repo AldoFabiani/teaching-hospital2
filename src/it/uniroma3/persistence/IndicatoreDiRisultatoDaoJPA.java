@@ -18,25 +18,25 @@ public class IndicatoreDiRisultatoDaoJPA extends DaoJPA implements IndicatoreDiR
 		this.entityManager = factory.createEntityManager();
 	}
 
-//	@Override
-//	public void save(IndicatoreDiRisultato indicatoreDiRisultato) {
-//		EntityTransaction tx = this.entityManager.getTransaction();
-//		tx.begin();
-//		entityManager.persist(indicatoreDiRisultato);
-//		tx.commit();
-//		this.closeEntityManagerAndFactory();
-//	}
+	@Override
+	public void save(IndicatoreDiRisultato indicatoreDiRisultato) {
+		EntityTransaction tx = this.entityManager.getTransaction();
+		tx.begin();
+		entityManager.persist(indicatoreDiRisultato);
+		tx.commit();
+		this.closeEntityManagerAndFactory();
+	}
 
-//	@Override
-//	public IndicatoreDiRisultato findByPrimaryKey(Long id) {
-//		EntityTransaction tx = this.entityManager.getTransaction();
-//		tx.begin();
-//		IndicatoreDiRisultato indicatoreDiRisultato = entityManager.find(IndicatoreDiRisultato.class, id);
-//		tx.commit();
-//		this.closeEntityManagerAndFactory();
-//
-//		return indicatoreDiRisultato;
-//	}
+	@Override
+	public IndicatoreDiRisultato findByPrimaryKey(Long id) {
+		EntityTransaction tx = this.entityManager.getTransaction();
+		tx.begin();
+		IndicatoreDiRisultato indicatoreDiRisultato = entityManager.find(IndicatoreDiRisultato.class, id);
+		tx.commit();
+		this.closeEntityManagerAndFactory();
+
+		return indicatoreDiRisultato;
+	}
 
 	public IndicatoreDiRisultato findByNome(String nomeIndicatoreDiRisultato) {
 		EntityTransaction tx = this.entityManager.getTransaction();

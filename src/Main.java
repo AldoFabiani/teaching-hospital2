@@ -15,11 +15,11 @@ import it.uniroma3.persistence.TipologiaEsameDaoJPA;
 
 public class Main {
 public static void main(String[] args){
-	TipologiaEsame t = new TipologiaEsame("tipo1","una tipologia",5F);
-	t.addNormaDiPreparazione(new NormaDiPreparazione("no-pregnant","esame vietato per donne incinte"));
-	t.addNormaDiPreparazione(new NormaDiPreparazione("no-aldarelli","esame vietato per aldarelli"));
-	t.addIndicatoreDiRisultato(new IndicatoreDiRisultato("da quanto sei incinta"));
-	TipologiaEsameDaoJPA dao = new TipologiaEsameDaoJPA();
-	dao.save(t);
+//	TipologiaEsame t = new TipologiaEsame("tipo1","una tipologia",5F);
+//	t.addNormaDiPreparazione(new NormaDiPreparazione("no-pregnant","esame vietato per donne incinte"));
+//	t.addNormaDiPreparazione(new NormaDiPreparazione("no-aldarelli","esame vietato per aldarelli"));
+//	t.addIndicatoreDiRisultato(new IndicatoreDiRisultato("da quanto sei incinta"));
+//	TipologiaEsameDaoJPA dao = new TipologiaEsameDaoJPA();
+//	dao.save(t);
 }
 }
