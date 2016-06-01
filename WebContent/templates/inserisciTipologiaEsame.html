@@ -7,7 +7,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-9 col-xs-8">
 				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.nomeTipologiaEsame"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nomeTipologiaEsame"
 					class="form-control" id="projects_search"
 					placeholder="Inserisci il nome della tipologia...">
 			</div>
@@ -18,7 +18,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-9 col-xs-8">
 				<textarea
-					ng-model="inserimentoTipologiaEsameCtrl.descrizioneTipologiaEsame"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizioneTipologiaEsame"
 					class="form-control" rows="5" id="descrizione"
 					placeholder="Inserisci una norma..."></textarea>
 			</div>
@@ -29,7 +29,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-9 col-xs-8">
 				<input type="number" min="1" step="any"
-					ng-model="inserimentoTipologiaEsameCtrl.costoTipologiaEsame"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costoTipologiaEsame"
 					class="form-control" id="projects_search"
 					placeholder="Inserisci il costo...">
 			</div>
@@ -52,9 +52,7 @@
 				<div class="checkbox"
 					ng-repeat="norma in inserimentoTipologiaEsameCtrl.normeDiPreparazione | filter:inserimentoTipologiaEsameCtrl.searchNormeDiPreparazione | orderBy:'nome'"
 					title="norma" name="norma">
-					<label><input type="checkbox"
-						ng-click="inserimentoTipologiaEsameCtrl.changedStatusNormeDiPreparazione($event, norma)"
-						value="">{{norma.nome}}</label>
+					<label><input type="checkbox" ng-click="changedStatusNormeDiPreparazione($event,norma)" value="">{{norma.nome}}</label>
 				</div>
 			</div>
 		</div>
@@ -111,15 +109,15 @@
 		<div id="prenotazioneInserita">
 			<ul>
 				<li>Il nome della tipologia è:
-					{{inserimentoTipologiaEsameCtrl.nomeTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nomeTipologiaEsame}}</li>
 				<li>La descrizione è:
-					{{inserimentoTipologiaEsameCtrl.descrizioneTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizioneTipologiaEsame}}</li>
 				<li>Il costo è:
-					{{inserimentoTipologiaEsameCtrl.costoTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costoTipologiaEsame}}</li>
 				<li>La lista di norme è:
-					{{inserimentoTipologiaEsameCtrl.normeTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.normeTipologiaEsame}}</li>
 				<li>La lista di indicatori è:
-					{{inserimentoTipologiaEsameCtrl.indicatoriTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.indicatoriTipologiaEsame}}</li>
 			</ul>
 		</div>
 

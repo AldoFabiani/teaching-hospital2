@@ -31,36 +31,35 @@ public class InserisciTipologiaEsameController extends HttpServlet {
 
 		String[] norme = req.getParameterValues("normeTipologiaEsame");
 		String[] indicatori = req.getParameterValues("indicatoriTipologiaEsame");
-		//		Long[] idNorme = getId(req.getParameter("normeTipologiaEsame"));
-		//		Long[] idIndicatori = getId(req.getParameter("indicatoriTipologiaEsame"));
 		resp.getWriter().write("QUI CI ARRIVO -> line 33" + norme[0] + " " +norme[1]);
 
 		TipologiaEsame nuovaTipologiaEsame = new TipologiaEsame(nomeTipologiaEsame, descrizioneTipologiaEsame, Float.valueOf(costoTipologiaEsame));
-//		for(Long id : idNorme){
-//			NormaDiPreparazioneDao daoNorma = new NormaDiPreparazioneDaoJPA();
-//			//			nuovaTipologiaEsame.addNormaDiPreparazione(daoNorma.findByPrimaryKey(id));
-//			daoNorma.findByPrimaryKey(id);
-//		}
-//		resp.getWriter().write("QUI CI ARRIVO -> line 40");
-//		for(Long id: idIndicatori){
-//			IndicatoreDiRisultatoDao daoIndicatore = new IndicatoreDiRisultatoDaoJPA();
-//			//			nuovaTipologiaEsame.addIndicatoreDiRisultato(daoIndicatore.findByPrimaryKey(id));
-//			daoIndicatore.findByPrimaryKey(id);
-//		}
+		for(Long id : getIds(norme)){
+			NormaDiPreparazioneDao daoNorma = new NormaDiPreparazioneDaoJPA();
+			//			nuovaTipologiaEsame.addNormaDiPreparazione(daoNorma.findByPrimaryKey(id));
+			daoNorma.findByPrimaryKey(id);
+		}
+		resp.getWriter().write("QUI CI ARRIVO -> line 40");
+		for(Long id: getIds(indicatori)){
+			IndicatoreDiRisultatoDao daoIndicatore = new IndicatoreDiRisultatoDaoJPA();
+			//			nuovaTipologiaEsame.addIndicatoreDiRisultato(daoIndicatore.findByPrimaryKey(id));
+			daoIndicatore.findByPrimaryKey(id);
+		}
 		resp.getWriter().write("QUI CI ARRIVO -> line 45");
 		TipologiaEsameDao dao = new TipologiaEsameDaoJPA();
 		dao.save(nuovaTipologiaEsame);
 
 	}
 
-	private Long[] getId(String daSplittare){
-		if(daSplittare.length()<3) return null;
-		daSplittare = daSplittare.substring(1, daSplittare.length()-1);
-		String[] daCastare = daSplittare.split(",");
-		Long[] daRitornare = new Long[daCastare.length];
-		for(int i=0; i<=daCastare.length-1;i++){
-			daRitornare[i] = Long.parseLong(daCastare[i]);
+	private Long[] getIds(String[] daCastare){
+		if(daCastare.length>0){
+			Long[] daRitornare = new Long[daCastare.length];
+			for(int i=0; i<=daCastare.length-1;i++){
+				daRitornare[i] = Long.parseLong(daCastare[i]);
+			}
+			return daRitornare;
 		}
-		return daRitornare;
+		return null;
 	}
+
 }
