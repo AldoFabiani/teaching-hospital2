@@ -9,16 +9,17 @@
 			placeholder="Inserisci la specializzazione...">
 	</div>
 </div>
-<script type="text/javascript" src="js/listgroup.min.js"></script>
+
+
+
 <div class="list-group">
-	<ul>
-		<li
-			ng-repeat="medico in inserimentoPrenotazioneCtrl.medici | filter:inserimentoPrenotazioneCtrl.searchMedici | orderBy:'specializzazione'"
-			title="medico" name="medico"
+	<button
+			 type="button" ng-repeat="medico in inserimentoPrenotazioneCtrl.medici | filter:inserimentoPrenotazioneCtrl.searchMedici | orderBy:'specializzazione'"
+			class="list-group-item" title="medico" name="medico"
 			ng-click="inserimentoPrenotazioneCtrl.addMedico(medico)"
-			class="list-group-item">{{medico.nome}} {{medico.cognome}} <em
+			>{{medico.nome}} {{medico.cognome}}
+			 <em
 			class="specializzazione">Specializzazione:
 				{{medico.specializzazione}}</em>
-		</li>
-	</ul>
+		</button>
 </div>

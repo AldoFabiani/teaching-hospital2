@@ -11,13 +11,13 @@
 	</div>
 </div>
 
-<script src="js/listgroup.min.js"></script>
+<!--  <script src="js/listgroup.min.js"></script>    -->
 
-<ul class="list-group">
+<div class="list-group">
 	<button
 	type="button" class="btn btn-default list-group-item" data-toggle="modal" data-target="#sceltaEffettuata"
 		ng-repeat="tipologia in consultazioneTipologieEsamiOffertiCtrl.tipologie | filter:consultazioneTipologieEsamiOffertiCtrl.searchTipologie | orderBy:'nome'"
 		title="tipologia" name="tipologia"
 		ng-click="consultazioneTipologieEsamiOffertiCtrl.addTipologia(tipologia)">{{tipologia.nome}} 
 		</button>
-</ul>
+</div>

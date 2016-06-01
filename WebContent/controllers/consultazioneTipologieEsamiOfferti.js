@@ -17,10 +17,9 @@ angular.module('teaching').controller("ConsultazioneTipologieEsamiOfferti",
 	this.addTipologia = function(tipologia) {
 		self.tipologia = tipologia;
 		self.presente=true;
-		console.log(tipologia);
+		$('#sceltaEffettuata').modal('hide');
 		delete self.tipologia["id"];
 		self.tipologia.costo= $filter('currency')(self.tipologia.costo,"€");
-		$('#sceltaEffettuata').modal('show');
 	};
 
 

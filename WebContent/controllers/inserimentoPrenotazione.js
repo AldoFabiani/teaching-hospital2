@@ -58,6 +58,8 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 			// al click selezioni il medico
 			this.addMedico = function(medico) {
 				self.medico = medico;
+				$(event.target).siblings().removeClass("active");
+				$(event.target).toggleClass("active");
 			};
 
 			// al click selezioni la tipologia
@@ -93,10 +95,8 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 			self.prenotazione.paziente=self.paziente.codiceFiscale;
 			self.prenotazione.medico=self.medico.nome + self.medico.cognome;
 			self.prenotazione.esame= self.tipologia.nome;
-			self.prenotazione.prezzo=self.tipologia.costo;
 			self.prenotazione.data=self.dataEsame;
-			self.tipologia.costo=$filter('currency')(self.tipologia.costo,"€");
-
+			self.prenotazione.prezzo=$filter('currency')(self.tipologia.costo,"€");
 			}
 		
 		
