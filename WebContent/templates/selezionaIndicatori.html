@@ -1,0 +1,33 @@
+<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Indicatori</h4>
+			</div>
+			<div class="col-md-offset-7 col-md-3 col-xs-8">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci un indicatore...">
+			</div>
+		</div>
+		<div class="row">
+			<div id="indicatoriContainer">
+
+				<div class="checkbox"
+					ng-repeat="indicatore in inserimentoTipologiaEsameCtrl.indicatoriDiRisultato | filter:inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato | orderBy:'nome'"
+					title="indicatore" name="indicatore">
+					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatoriDiRisultato($event, indicatore)"
+					value="">{{indicatore.nome}}</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label>Vuoi inserire un nuovo indicatore?</label>
+			</div>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-primary-outline"
+					data-toggle="modal" data-target="#inserimentoIndicatoreDiRisultato">
+					New!</button>
+			</div>
+		</div>
+		<div ng-include="'templates/inserisciIndicatoreDiRisultato.html'"></div>

@@ -1,0 +1,68 @@
+<!-- Inserimento norme-->
+<div>
+	<form ng-submit="inserimentoTipologiaEsameCtrl.aggiungiTipologiaEsame()">
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Nome</h4>
+			</div>
+			<div class="col-md-offset-1 col-md-9 col-xs-8">
+				<input type="text"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nomeTipologiaEsame"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci il nome della tipologia...">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Descrizione</h4>
+			</div>
+			<div class="col-md-offset-1 col-md-9 col-xs-8">
+				<textarea
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizioneTipologiaEsame"
+					class="form-control" rows="5" id="descrizione"
+					placeholder="Inserisci una norma..."></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Costo</h4>
+			</div>
+			<div class="col-md-offset-1 col-md-9 col-xs-8">
+				<input type="number" min="1" step="any"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costoTipologiaEsame"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci il costo...">
+			</div>
+		</div>
+
+		<!-- Inserimento norme-->
+		<div ng-include="'templates/selezionaNorme.html'" ng-controller="NormaController as normaCtrl">
+		</div>
+	
+
+		<!-- Inserimento indicatori-->
+		<div ng-include="'templates/selezionaIndicatori.html'"></div>
+
+		<!-- Live preview -->
+		<div id="prenotazioneInserita">
+			<ul>
+				<li>Il nome della tipologia è:
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nomeTipologiaEsame}}</li>
+				<li>La descrizione è:
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizioneTipologiaEsame}}</li>
+				<li>Il costo è:
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costoTipologiaEsame}}</li>
+				<li>La lista di norme è:
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.normeTipologiaEsame}}</li>
+				<li>La lista di indicatori è:
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.indicatoriTipologiaEsame}}</li>
+			</ul>
+		</div>
+
+
+		<div class="row">
+			<button type="submit" class="btn btn-primary btn-lg btn-block">
+			Inserisci tipologia</button>
+		</div>
+	</form>
+</div>
