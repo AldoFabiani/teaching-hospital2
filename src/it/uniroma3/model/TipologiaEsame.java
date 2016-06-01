@@ -27,12 +27,12 @@ public class TipologiaEsame {
 //	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
 //	private Set<Norma> norme;
 //	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
-//	private Set<IndicatoreDiRisultato> indicatoriDiRisultato;
+//	private Set<Indicatore> indicatori;
 
 
 	public TipologiaEsame() {
-//		this.normeDiPreparazione = new HashSet<Norma>();
-//		this.indicatoriDiRisultato = new HashSet<IndicatoreDiRisultato>();
+//		this.norme = new HashSet<Norma>();
+//		this.indicatori = new HashSet<Indicatore>();
 	}
 	
 	public TipologiaEsame(String nome, String descrizione, Float costo) {
@@ -40,7 +40,7 @@ public class TipologiaEsame {
 		this.descrizione = descrizione;
 		this.costo = costo;
 //		this.norme = new HashSet<Norma>();
-//		this.indicatoriDiRisultato = new HashSet<IndicatoreDiRisultato>();
+//		this.indicatori = new HashSet<Indicatore>();
 	}
 
 	public Long getId() {
@@ -77,19 +77,19 @@ public class TipologiaEsame {
 	
 
 //	public Set<Norma> getNorme() {
-//		return normeDiPreparazione;
+//		return norme;
 //	}
 //
 //	public void setNorme(Set<Norma> norme) {
 //		this.norme = norme;
 //	}
 //
-//	public Set<IndicatoreDiRisultato> getIndicatoriRisultato() {
-//		return indicatoriDiRisultato;
+//	public Set<Indicatore> getIndicatori() {
+//		return indicatori;
 //	}
 //
-//	public void setIndicatoriRisultato(Set<IndicatoreDiRisultato> indicatoriRisultato) {
-//		this.indicatoriDiRisultato = indicatoriRisultato;
+//	public void setIndicatori(Set<Indicatore> indicatori) {
+//		this.indicatori = indicatori;
 //	}
 
 	@Override
@@ -108,7 +108,7 @@ public class TipologiaEsame {
 //		
 //	}
 //
-//	public void addIndicatoreDiRisultato(IndicatoreDiRisultato indicatoreDiRisultato) {
-//		this.indicatoriDiRisultato.add(indicatoreDiRisultato);
+//	public void addIndicatore(Indicatore indicatore) {
+//		this.indicatori.add(indicatore);
 //	}
 }

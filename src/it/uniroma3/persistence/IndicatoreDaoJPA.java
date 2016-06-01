@@ -9,70 +9,70 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import it.uniroma3.model.IndicatoreDiRisultato;
+import it.uniroma3.model.Indicatore;
 
-public class IndicatoreDiRisultatoDaoJPA extends DaoJPA implements IndicatoreDiRisultatoDao {
+public class IndicatoreDaoJPA extends DaoJPA implements IndicatoreDao {
 
-	public IndicatoreDiRisultatoDaoJPA() {
+	public IndicatoreDaoJPA() {
 		this.factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
 	@Override
-	public void save(IndicatoreDiRisultato indicatoreDiRisultato) {
+	public void save(Indicatore indicatore) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		entityManager.persist(indicatoreDiRisultato);
+		entityManager.persist(indicatore);
 		tx.commit();
 		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
-	public IndicatoreDiRisultato findByPrimaryKey(Long id) {
+	public Indicatore findByPrimaryKey(Long id) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		IndicatoreDiRisultato indicatoreDiRisultato = entityManager.find(IndicatoreDiRisultato.class, id);
+		Indicatore indicatore = entityManager.find(Indicatore.class, id);
 		tx.commit();
 		this.closeEntityManagerAndFactory();
 
-		return indicatoreDiRisultato;
+		return indicatore;
 	}
 
-	public IndicatoreDiRisultato findByNome(String nomeIndicatoreDiRisultato) {
+	public Indicatore findByNome(String nomeIndicatore) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		Query queryFindByNome = entityManager
-				.createQuery("SELECT i FROM IndicatoreDiRisultato i WHERE i.nome = :nomeIndicatoreDiRisultato");
-		queryFindByNome.setParameter("nomeIndicatoreDiRisultato", nomeIndicatoreDiRisultato);
-		IndicatoreDiRisultato indicatoreDiRisultato = (IndicatoreDiRisultato) queryFindByNome.getSingleResult();
+				.createQuery("SELECT i FROM Indicatore i WHERE i.nome = :nomeIndicatore");
+		queryFindByNome.setParameter("nomeIndicatore", nomeIndicatore);
+		Indicatore indicatore = (Indicatore) queryFindByNome.getSingleResult();
 		tx.commit();
 		this.closeEntityManagerAndFactory();
-		return indicatoreDiRisultato;
+		return indicatore;
 	}
 
 	@Override
-	public List<IndicatoreDiRisultato> findAll() {
-		List<IndicatoreDiRisultato> resultList = this.entityManager.createNamedQuery("findAllIndicatoriDiRisulato").getResultList();
+	public List<Indicatore> findAll() {
+		List<Indicatore> resultList = this.entityManager.createNamedQuery("findAllIndicatori").getResultList();
 		this.closeEntityManagerAndFactory();
 
 		return resultList;
 	}
 
 //	@Override
-//	public void update(IndicatoreDiRisultato indicatoreDiRisultato) {
+//	public void update(Indicatore indicatore) {
 //		EntityTransaction tx = this.entityManager.getTransaction();
 //		tx.begin();
-//		entityManager.merge(indicatoreDiRisultato);
+//		entityManager.merge(indicatore);
 //		tx.commit();
 //		this.closeEntityManagerAndFactory();
 //
 //	}
 
 //	@Override
-//	public void delete(IndicatoreDiRisultato indicatoreDiRisultato) {
+//	public void delete(Indicatore indicatore) {
 //		EntityTransaction tx = this.entityManager.getTransaction();
 //		tx.begin();
-//		entityManager.remove(indicatoreDiRisultato);
+//		entityManager.remove(indicatore);
 //		tx.commit();
 //		this.closeEntityManagerAndFactory();
 //	}

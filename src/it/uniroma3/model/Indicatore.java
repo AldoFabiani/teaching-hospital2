@@ -8,19 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "findAllIndicatoriDiRisulato", query = "SELECT i FROM IndicatoreDiRisultato i")
-public class IndicatoreDiRisultato {
+@NamedQuery(name = "findAllIndicatori", query = "SELECT i FROM Indicatore i")
+public class Indicatore {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
-	public IndicatoreDiRisultato() {
+	public Indicatore() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public IndicatoreDiRisultato(String nome) {
+	public Indicatore(String nome) {
 		this.nome = nome;
 	}
 
@@ -42,7 +42,7 @@ public class IndicatoreDiRisultato {
 	
 	@Override
 	public boolean equals(Object obj) {
-		IndicatoreDiRisultato that = (IndicatoreDiRisultato) obj;
+		Indicatore that = (Indicatore) obj;
 		return this.nome.equals(that.nome);
 	}
 	

@@ -35,30 +35,6 @@ angular.module('teaching').controller("NormaController",
 
 				}
 				$inserimentoService.inserisciOggetto('norma',params,toDo);
-
-//				$http({
-//				method : 'POST',
-//				url : 'inserisciNormaDiPreparazione',
-//				headers : {
-//				'Content-Type' : 'application/json'
-//				},
-//				params : {
-//				nome: self.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione,
-//				descrizione: self.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione
-//				}
-//				}).success(function(data) {
-//				console.log(data);
-//				self.normeDiPreparazione.push(
-//				{ 	id: parseFloat(data), 
-//				nome: self.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione,
-//				descrizione: self.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione
-//				}
-//				);
-//				$('input').val('');
-//				$('textarea').val('');
-//				$('#inserimentoNormaDiPreparazione').modal('hide');
-//				});
-				
 				
 			};
 			
