@@ -65,6 +65,8 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 			// al click selezioni la tipologia
 			this.addTipologia = function(tipologia) {
 				self.tipologia = tipologia;
+				$(event.target).siblings().removeClass("active");
+				$(event.target).toggleClass("active");
 			};
 
 			// aggiungi una prenotazione nella base di dati

@@ -13,11 +13,10 @@
 
 
 <div class="list-group">
-	<ul class="list-group">
-		<li class="list-group-item"
+	<button class="list-group-item"
 			ng-repeat="tipologia in inserimentoPrenotazioneCtrl.tipologie | filter:inserimentoPrenotazioneCtrl.searchTipologie | orderBy:'nome'"
 			title="tipologia" name="tipologia"
 			ng-click="inserimentoPrenotazioneCtrl.addTipologia(tipologia)">{{tipologia.nome}}
-			{{tipologia.costo | currency:"€"}}</li>
-	</ul>
+			{{tipologia.costo | currency:"€"}}
+	</button>
 </div>

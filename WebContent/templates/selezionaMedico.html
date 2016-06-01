@@ -16,8 +16,8 @@
 	<button
 			 type="button" ng-repeat="medico in inserimentoPrenotazioneCtrl.medici | filter:inserimentoPrenotazioneCtrl.searchMedici | orderBy:'specializzazione'"
 			class="list-group-item" title="medico" name="medico"
-			ng-click="inserimentoPrenotazioneCtrl.addMedico(medico)"
-			>{{medico.nome}} {{medico.cognome}}
+			ng-click="inserimentoPrenotazioneCtrl.addMedico(medico)">
+			{{medico.nome}} {{medico.cognome}}
 			 <em
 			class="specializzazione">Specializzazione:
 				{{medico.specializzazione}}</em>
