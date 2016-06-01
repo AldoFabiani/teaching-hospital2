@@ -27,7 +27,6 @@ public class PazienteController extends HttpServlet{
 		String codiceFiscale = req.getParameter("codiceFiscale");
 		PazienteDaoJPA pazienteDao = new PazienteDaoJPA();
 		Paziente paziente = pazienteDao.findByCodiceFiscale(codiceFiscale);
-		
 		String json = new Gson().toJson(paziente);
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("applications/json");
