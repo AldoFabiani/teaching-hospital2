@@ -1,7 +1,7 @@
 
 <!-- Modal -->
-<div class="modal fade" id="prenotazioneAggiunta" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel">
+<div class="modal fade" id="prenotazioneAggiunta" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -16,26 +16,19 @@
 				<p>Controlla attentamente i dati immessi. Una volta premuto il
 					pulsante "Conferma" la prenotazione verrà memorizzata nel Sistema.</p>
 				<dl class="dl-horizontal">
-					<dt>Paziente:</dt>
-					<dd>{{inserimentoPrenotazioneCtrl.paziente.codiceFiscale}}</dd>
-					<dt>Medico:</dt>
-					<dd>{{inserimentoPrenotazioneCtrl.medico.nome}}
-						{{inserimentoPrenotazioneCtrl.medico.cognome}}</dd>
-					<dt>Tipologia Esame:</dt>
-					<dd>{{inserimentoPrenotazioneCtrl.tipologia.nome}}</dd>
-					<dt>Costo Esame:</dt>
-					<dd>{{inserimentoPrenotazioneCtrl.tipologia.costo | currency:"€"}}</dd>
-					<dt>Data:</dt>
-					<dd>{{inserimentoPrenotazioneCtrl.dataEsame}}</dd>
+					<div
+						ng-repeat="(key,value) in inserimentoPrenotazioneCtrl.prenotazione">
+						<dt class="first-letter-capital">{{key}}</dt>
+						<dd>{{value}}</dd>
+					</div>
 				</dl>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Indietro</button>
 				<button type="submit" class="btn btn-primary">Conferma
 					Prenotazione</button>
 			</div>
 		</div>
 	</div>
 </div>
-
 

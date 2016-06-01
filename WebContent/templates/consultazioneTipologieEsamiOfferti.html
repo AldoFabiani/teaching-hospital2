@@ -1,13 +1,12 @@
 <h2>Esami Offerti</h2>
 
-
-
 <div class="row">
 	<div class="col-md-9 col-xs-8">
 		<div ng-include="'templates/consultaTipologia.html'"
 			id="tipologieContainer"></div>
 	</div>
 </div>
-<div ng-include="'templates/datiTipologia.html'" ng-show="consultazioneTipologieEsamiOffertiCtrl.tipologia.nome"
-	id="datiTipologia"></div>
+	
+<div ng-include="'view/preview/previewTipologiaScelta.html'"
+		ng-show="consultazioneTipologieEsamiOffertiCtrl.previewPronto"></div>
 

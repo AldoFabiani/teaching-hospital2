@@ -10,12 +10,14 @@
 			placeholder="Inserisci il nome...">
 	</div>
 </div>
-<div class="list-group">
-	
-	<li
+
+<script src="js/listgroup.min.js"></script>
+
+<ul class="list-group">
+	<button
+	type="button" class="btn btn-default list-group-item" data-toggle="modal" data-target="#sceltaEffettuata"
 		ng-repeat="tipologia in consultazioneTipologieEsamiOffertiCtrl.tipologie | filter:consultazioneTipologieEsamiOffertiCtrl.searchTipologie | orderBy:'nome'"
 		title="tipologia" name="tipologia"
-		ng-click="consultazioneTipologieEsamiOffertiCtrl.addTipologia(tipologia)"
-		class="list-group-item">{{tipologia.nome}} {{tipologia.codice}}
-		</li>
-</div>
+		ng-click="consultazioneTipologieEsamiOffertiCtrl.addTipologia(tipologia)">{{tipologia.nome}} 
+		</button>
+</ul>

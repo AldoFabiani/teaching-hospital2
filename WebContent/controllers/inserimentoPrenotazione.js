@@ -1,5 +1,5 @@
 angular.module('teaching').controller("InserimentoPrenotazioneController",
-		[ '$http', function($http) {
+		[ '$http','$filter', function($http,$filter) {
 			//mi salvo il contesto della funzione
 			var self = this;
 			
@@ -13,11 +13,12 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 			self.dataEsame;
 			self.paziente = {};
 			self.codiceFiscalePaziente;
+			self.prenotazione={};
 			//booleano per ng-show e hide
 			self.hoCercatoPaziente = false;
 			self.previewPronto = true;
 			//per i filtri
-			self.searchMedici;
+			self.rchMedici;
 			self.searchTipologie;
 
 			// GET per la lista delle tipologie e la lista dei medici
@@ -88,4 +89,16 @@ angular.module('teaching').controller("InserimentoPrenotazioneController",
 				});
 			};
 
+		this.makeNewPrenotazione = function(){
+			self.prenotazione.paziente=self.paziente.codiceFiscale;
+			self.prenotazione.medico=self.medico.nome + self.medico.cognome;
+			self.prenotazione.esame= self.tipologia.nome;
+			self.prenotazione.prezzo=self.tipologia.costo;
+			self.prenotazione.data=self.dataEsame;
+			self.tipologia.costo=$filter('currency')(self.tipologia.costo,"€");
+
+			}
+		
+		
+			
 		} ]);

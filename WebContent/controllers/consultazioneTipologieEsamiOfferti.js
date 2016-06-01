@@ -1,9 +1,10 @@
 angular.module('teaching').controller("ConsultazioneTipologieEsamiOfferti",
-['$http',function($http){
+['$http','$filter',function($http,$filter){
 	var self = this;
 	self.tipologie=[];
 	self.searchTipologie;
 	self.tipologia={};
+	self.previewPronto=true;
 	
 	$http({
 		method: 'GET',
@@ -17,19 +18,12 @@ angular.module('teaching').controller("ConsultazioneTipologieEsamiOfferti",
 		self.tipologia = tipologia;
 		self.presente=true;
 		console.log(tipologia);
+		delete self.tipologia["id"];
+		self.tipologia.costo= $filter('currency')(self.tipologia.costo,"€");
+		$('#sceltaEffettuata').modal('show');
 	};
 
 
 
 } ]);
 	
-
-
-
-
-
-
-
-
-
-
