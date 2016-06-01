@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma3.model.IndicatoreDiRisultato;
-import it.uniroma3.model.NormaDiPreparazione;
+import it.uniroma3.model.Norma;
 import it.uniroma3.persistence.IndicatoreDiRisultatoDao;
 import it.uniroma3.persistence.IndicatoreDiRisultatoDaoJPA;
-import it.uniroma3.persistence.NormaDiPreparazioneDao;
-import it.uniroma3.persistence.NormaDiPreparazioneDaoJPA;
+import it.uniroma3.persistence.NormaDao;
+import it.uniroma3.persistence.NormaDaoJPA;
 
 @WebServlet("/inserisciIndicatoreDiRisultato")
 public class InserisciIndicatoreDiRisultatoController extends HttpServlet {

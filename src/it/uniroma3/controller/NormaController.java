@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.uniroma3.model.NormaDiPreparazione;
-import it.uniroma3.persistence.NormaDiPreparazioneDao;
-import it.uniroma3.persistence.NormaDiPreparazioneDaoJPA;
+import it.uniroma3.model.Norma;
+import it.uniroma3.persistence.NormaDao;
+import it.uniroma3.persistence.NormaDaoJPA;
 
-@WebServlet("/inserisciNormaDiPreparazione")
-public class InserisciNormaDiPreparazioneController extends HttpServlet {
+@WebServlet("/norma")
+public class NormaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -23,8 +23,8 @@ public class InserisciNormaDiPreparazioneController extends HttpServlet {
 		String descrizione = req.getParameter("descrizione");
 		
 		
-		NormaDiPreparazione daInserire = new NormaDiPreparazione(nome,descrizione);
-		NormaDiPreparazioneDao dao = new NormaDiPreparazioneDaoJPA();
+		Norma daInserire = new Norma(nome,descrizione);
+		NormaDao dao = new NormaDaoJPA();
 		dao.save(daInserire);
 		
 		resp.getWriter().write(daInserire.getId().toString());

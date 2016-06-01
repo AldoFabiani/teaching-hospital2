@@ -25,13 +25,13 @@ public class TipologiaEsame {
 	@Column(nullable = false)
 	private Float costo;
 //	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
-//	private Set<NormaDiPreparazione> normeDiPreparazione;
+//	private Set<Norma> norme;
 //	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
 //	private Set<IndicatoreDiRisultato> indicatoriDiRisultato;
 
 
 	public TipologiaEsame() {
-//		this.normeDiPreparazione = new HashSet<NormaDiPreparazione>();
+//		this.normeDiPreparazione = new HashSet<Norma>();
 //		this.indicatoriDiRisultato = new HashSet<IndicatoreDiRisultato>();
 	}
 	
@@ -39,7 +39,7 @@ public class TipologiaEsame {
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.costo = costo;
-//		this.normeDiPreparazione = new HashSet<NormaDiPreparazione>();
+//		this.norme = new HashSet<Norma>();
 //		this.indicatoriDiRisultato = new HashSet<IndicatoreDiRisultato>();
 	}
 
@@ -76,12 +76,12 @@ public class TipologiaEsame {
 	}
 	
 
-//	public Set<NormaDiPreparazione> getNormeDiPreparazione() {
+//	public Set<Norma> getNorme() {
 //		return normeDiPreparazione;
 //	}
 //
-//	public void setNormeDiPreparazione(Set<NormaDiPreparazione> normeDiPreparazione) {
-//		this.normeDiPreparazione = normeDiPreparazione;
+//	public void setNorme(Set<Norma> norme) {
+//		this.norme = norme;
 //	}
 //
 //	public Set<IndicatoreDiRisultato> getIndicatoriRisultato() {
@@ -103,8 +103,8 @@ public class TipologiaEsame {
 		return this.getNome().hashCode();
 	}
 
-//	public void addNormaDiPreparazione(NormaDiPreparazione normaDiPreparazione) {
-//		this.normeDiPreparazione.add(normaDiPreparazione);
+//	public void addNorma(Norma norma) {
+//		this.norme.add(norma);
 //		
 //	}
 //

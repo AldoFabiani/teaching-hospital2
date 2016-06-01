@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import it.uniroma3.model.IndicatoreDiRisultato;
-import it.uniroma3.model.NormaDiPreparazione;
+import it.uniroma3.model.Norma;
 import it.uniroma3.persistence.IndicatoreDiRisultatoDao;
 import it.uniroma3.persistence.IndicatoreDiRisultatoDaoJPA;
-import it.uniroma3.persistence.NormaDiPreparazioneDao;
-import it.uniroma3.persistence.NormaDiPreparazioneDaoJPA;
+import it.uniroma3.persistence.NormaDao;
+import it.uniroma3.persistence.NormaDaoJPA;
 
 @WebServlet("/inserisciNuovaTipologiaEsame")
 public class InserisciNuovaTipologiaEsameController extends HttpServlet {
@@ -32,10 +32,10 @@ public class InserisciNuovaTipologiaEsameController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<IndicatoreDiRisultato> indicatoriDiRisultato = getInidicatoriDiRisulato();
-		List<NormaDiPreparazione> normeDiPreparazione = getNormeDiPreparazione();
+		List<Norma> normeDiNorma = getNormeDiNorma();
 		Map<String,Object> mappa = new HashMap<>();
 		mappa.put("indicatoriDiRisultato",indicatoriDiRisultato);
-		mappa.put("normeDiPreparazione",normeDiPreparazione);
+		mappa.put("normeDiPreparazione",normeDiNorma);
 		String responseJson = new Gson().toJson(mappa);
 		resp.setContentType(APPLICATIONS_JSON);
 		resp.setCharacterEncoding(UTF_8);
@@ -47,8 +47,8 @@ public class InserisciNuovaTipologiaEsameController extends HttpServlet {
 		return id.findAll();
 	}
 
-	private List<NormaDiPreparazione> getNormeDiPreparazione() {
-		NormaDiPreparazioneDao nd= new NormaDiPreparazioneDaoJPA();
+	private List<Norma> getNormeDiNorma() {
+		NormaDao nd= new NormaDaoJPA();
 		return nd.findAll();
 	}
 }

@@ -5,7 +5,7 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 			
 			//liste bindate e caricate dal GET
 			self.indicatoriDiRisultato = [];
-			self.normeDiPreparazione = [];
+			
 			
 			//nome, descrizione e costo della nuova tipologia di esame 
 			// e tutte le sue norme di preparazione e i suoi indicatori di risultato
@@ -14,25 +14,19 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 					indicatoriTipologiaEsame: []
 			};
 		
-			//per i filtri
-			self.searchNormeDiPreparazione;
+			
 			self.searchIndicatoriDiRisultato;
 			
-			//per l'inserimento di una nuova norma di preparazione!
-			self.nuovaNormaDiPreparazione = {};
-		
-			//per l'inserimento di un nuovo indicatore di risultato!
-			self.nuovoIndicatoreRisultato = {};
 
-			// GET per la lista di tutte le norme di preparazione e di tutti gli indicatori di risultato
-			// presenti nel sistema
-			$http({
-				method : 'GET',
-				url : 'inserisciNuovaTipologiaEsame',
-			}).then(function successCallback(response) {
-				self.indicatoriDiRisultato = response.data.indicatoriDiRisultato;
-				self.normeDiPreparazione = response.data.normeDiPreparazione;
-			});
+//			// GET per la lista di tutte le norme di preparazione e di tutti gli indicatori di risultato
+//			// presenti nel sistema
+//			$http({
+//				method : 'GET',
+//				url : 'inserisciNuovaTipologiaEsame',
+//			}).then(function successCallback(response) {
+//				self.indicatoriDiRisultato = response.data.indicatoriDiRisultato;
+//				self.normeDiPreparazione = response.data.normeDiPreparazione;
+//			});
 
 			this.changedStatusNormeDiPreparazione = function($event,norma){
 				  var checkbox = $event.target;
@@ -43,7 +37,15 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 					  self.removeNormaDiPreparazione(norma.id);
 				  }
 			}
-			
+			this.changedStatusNorme = function($event,norma){
+				var checkbox = $event.target;
+				if(checkbox.checked==true){
+					self.addNormaDiPreparazione(norma.id);
+				}
+				else{
+					self.removeNormaDiPreparazione(norma.id);
+				}
+			}
 			this.changedStatusIndicatoriDiRisultato = function($event,indicatore){
 				  var checkbox = $event.target;
 				  if(checkbox.checked==true){
@@ -74,56 +76,6 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 			this.removeIndicatoreDiRisultato = function(idIndicatoreDiRisultato) {
 				var index = self.nuovaTipologiaEsame.indicatoriTipologiaEsame.indexOf(idIndicatoreDiRisultato);
 				if(index>-1) self.nuovaTipologiaEsame.indicatoriTipologiaEsame.splice(index, 1);
-			};
-			
-			// aggiungi una norma nella base di dati
-			this.inserisciNormaDiPreparazione = function() {
-				$http({
-					method : 'POST',
-					url : 'inserisciNormaDiPreparazione',
-					headers : {
-						'Content-Type' : 'application/json'
-					},
-					params : {
-						nome: self.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione,
-						descrizione: self.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione
-					}
-				}).success(function(data) {
-					console.log(data);
-					self.normeDiPreparazione.push(
-							{ 	id: parseFloat(data), 
-								nome: self.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione,
-								descrizione: self.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione
-								}
-							);
-					$('input').val('');
-					$('textarea').val('');
-					$('#inserimentoNormaDiPreparazione').modal('hide');
-				});
-			};
-			
-			// aggiungi un nuovo indicatore nella base di dati
-			this.inserisciIndicatoreDiRisultato = function() {
-				$http({
-					method : 'POST',
-					url : 'inserisciIndicatoreDiRisultato',
-					headers : {
-						'Content-Type' : 'application/json'
-					},
-					params : {
-						nome: self.nuovoIndicatoreRisultato.nomeNuovoIndicatoreDiRisultato
-					}
-				}).success(function(data) {
-					console.log(data);
-					self.indicatoriDiRisultato.push(
-							{ 	id: parseFloat(data), 
-								nome: self.nuovoIndicatoreRisultato.nomeNuovoIndicatoreDiRisultato
-								}
-							);
-					$('input').val('');
-					$('textarea').val('');
-					$('#inserimentoIndicatoreDiRisultato').modal('hide');
-				});
 			};
 
 			// aggiungi una tipologia di esame nella base di dati

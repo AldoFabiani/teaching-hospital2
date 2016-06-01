@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import it.uniroma3.model.TipologiaEsame;
 import it.uniroma3.persistence.IndicatoreDiRisultatoDao;
 import it.uniroma3.persistence.IndicatoreDiRisultatoDaoJPA;
-import it.uniroma3.persistence.NormaDiPreparazioneDao;
-import it.uniroma3.persistence.NormaDiPreparazioneDaoJPA;
+import it.uniroma3.persistence.NormaDao;
+import it.uniroma3.persistence.NormaDaoJPA;
 import it.uniroma3.persistence.TipologiaEsameDao;
 import it.uniroma3.persistence.TipologiaEsameDaoJPA;
 
@@ -35,7 +35,7 @@ public class InserisciTipologiaEsameController extends HttpServlet {
 
 		TipologiaEsame nuovaTipologiaEsame = new TipologiaEsame(nomeTipologiaEsame, descrizioneTipologiaEsame, Float.valueOf(costoTipologiaEsame));
 		for(Long id : getIds(norme)){
-			NormaDiPreparazioneDao daoNorma = new NormaDiPreparazioneDaoJPA();
+			NormaDao daoNorma = new NormaDaoJPA();
 			//			nuovaTipologiaEsame.addNormaDiPreparazione(daoNorma.findByPrimaryKey(id));
 			daoNorma.findByPrimaryKey(id);
 		}

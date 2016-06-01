@@ -36,74 +36,12 @@
 		</div>
 
 		<!-- Inserimento norme-->
-		<div class="row">
-			<div class="col-md-2 col-xs-4">
-				<h4>Norme</h4>
-			</div>
-			<div class="col-md-offset-7 col-md-3 col-xs-8">
-				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.searchNormeDiPreparazione"
-					class="form-control" id="projects_search"
-					placeholder="Inserisci una norma...">
-			</div>
+		<div ng-include="'templates/selezionaNorme.html'" ng-controller="NormaController as normaCtrl">
 		</div>
-		<div class="row">
-			<div id="normeContainer">
-				<div class="checkbox"
-					ng-repeat="norma in inserimentoTipologiaEsameCtrl.normeDiPreparazione | filter:inserimentoTipologiaEsameCtrl.searchNormeDiPreparazione | orderBy:'nome'"
-					title="norma" name="norma">
-					<label><input type="checkbox" ng-click="changedStatusNormeDiPreparazione($event,norma)" value="">{{norma.nome}}</label>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<label>Vuoi inserire una nuova norma?</label>
-			</div>
-			<div class="col-md-8">
-				<button type="button" class="btn btn-primary-outline"
-					data-toggle="modal" data-target="#inserimentoNormaDiPreparazione">
-					New!</button>
-			</div>
-		</div>
-		<div ng-include="'templates/inserisciNormaDiPreparazione.html'"></div>
+	
 
 		<!-- Inserimento indicatori-->
-		<div class="row">
-
-			<div class="col-md-2 col-xs-4">
-				<h4>Indicatori</h4>
-			</div>
-			<div class="col-md-offset-7 col-md-3 col-xs-8">
-				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato"
-					class="form-control" id="projects_search"
-					placeholder="Inserisci un indicatore...">
-			</div>
-		</div>
-		<div class="row">
-			<div id="indicatoriContainer">
-
-				<div class="checkbox"
-					ng-repeat="indicatore in inserimentoTipologiaEsameCtrl.indicatoriDiRisultato | filter:inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato | orderBy:'nome'"
-					title="indicatore" name="indicatore">
-					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatoriDiRisultato($event, indicatore)"
-					value="">{{indicatore.nome}}</label>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<label>Vuoi inserire un nuovo indicatore?</label>
-			</div>
-			<div class="col-md-8">
-				<button type="button" class="btn btn-primary-outline"
-					data-toggle="modal" data-target="#inserimentoIndicatoreDiRisultato">
-					New!</button>
-			</div>
-		</div>
-		<div ng-include="'templates/inserisciIndicatoreDiRisultato.html'"></div>
-
+		<div ng-include="'templates/selezionaIndicatori.html'"></div>
 
 		<!-- Live preview -->
 		<div id="prenotazioneInserita">

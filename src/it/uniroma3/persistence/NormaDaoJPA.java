@@ -9,70 +9,70 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import it.uniroma3.model.NormaDiPreparazione;
+import it.uniroma3.model.Norma;
 
-public class NormaDiPreparazioneDaoJPA extends DaoJPA implements NormaDiPreparazioneDao {
+public class NormaDaoJPA extends DaoJPA implements NormaDao {
 
-	public NormaDiPreparazioneDaoJPA() {
+	public NormaDaoJPA() {
 		this.factory = Persistence.createEntityManagerFactory("teaching-hospital-web-unit");
 		this.entityManager = factory.createEntityManager();
 	}
 
 	@Override
-	public void save(NormaDiPreparazione normaDiPreparazione) {
+	public void save(Norma norma) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		entityManager.persist(normaDiPreparazione);
+		entityManager.persist(norma);
 		tx.commit();
 		this.closeEntityManagerAndFactory();
 	}
 
 	@Override
-	public NormaDiPreparazione findByPrimaryKey(Long id) {
+	public Norma findByPrimaryKey(Long id) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
-		NormaDiPreparazione normaDiPreparazione = entityManager.find(NormaDiPreparazione.class, id);
+		Norma norma = entityManager.find(Norma.class, id);
 		tx.commit();
 		this.closeEntityManagerAndFactory();
 
-		return normaDiPreparazione;
+		return norma;
 	}
 
-	public NormaDiPreparazione findByNome(String nomeNormaDiPreparazione) {
+	public Norma findByNome(String nomeNorma) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
 		Query queryFindByNome = entityManager
-				.createQuery("SELECT n FROM NormaDiPreparazione n WHERE n.nome = :nomeNormaDiPreparazione");
-		queryFindByNome.setParameter("nomeNormaDiPreparazione", nomeNormaDiPreparazione);
-		NormaDiPreparazione normaDiPreparazione = (NormaDiPreparazione) queryFindByNome.getSingleResult();
+				.createQuery("SELECT n FROM Norma n WHERE n.nome = :nomeNorma");
+		queryFindByNome.setParameter("nomeNorma", nomeNorma);
+		Norma norma = (Norma) queryFindByNome.getSingleResult();
 		tx.commit();
 		this.closeEntityManagerAndFactory();
-		return normaDiPreparazione;
+		return norma;
 	}
 
 	@Override
-	public List<NormaDiPreparazione> findAll() {
-		List<NormaDiPreparazione> resultList = this.entityManager.createNamedQuery("findAllNormeDiPreparazione").getResultList();
+	public List<Norma> findAll() {
+		List<Norma> resultList = this.entityManager.createNamedQuery("findAllNorme").getResultList();
 		this.closeEntityManagerAndFactory();
 
 		return resultList;
 	}
 
 //	@Override
-//	public void update(NormaDiPreparazione normaDiPreparazione) {
+//	public void update(Norma norma) {
 //		EntityTransaction tx = this.entityManager.getTransaction();
 //		tx.begin();
-//		entityManager.merge(normaDiPreparazione);
+//		entityManager.merge(norma);
 //		tx.commit();
 //		this.closeEntityManagerAndFactory();
 //
 //	}
 
 //	@Override
-//	public void delete(NormaDiPreparazione normaDiPreparazione) {
+//	public void delete(Norma norma) {
 //		EntityTransaction tx = this.entityManager.getTransaction();
 //		tx.begin();
-//		entityManager.remove(normaDiPreparazione);
+//		entityManager.remove(norma);
 //		tx.commit();
 //		this.closeEntityManagerAndFactory();
 //	}

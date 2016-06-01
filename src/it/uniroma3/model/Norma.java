@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "findAllNormeDiPreparazione", query = "SELECT n FROM NormaDiPreparazione n")
-public class NormaDiPreparazione {
+@NamedQuery(name = "findAllNorme", query = "SELECT n FROM Norma n")
+public class Norma {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -18,11 +18,11 @@ public class NormaDiPreparazione {
 	@Column(nullable = false)
 	private String descrizione;
 	
-	public NormaDiPreparazione() {
+	public Norma() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public NormaDiPreparazione(String nome, String descrizione) {
+	public Norma(String nome, String descrizione) {
 		this.nome = nome;
 		this.descrizione = descrizione;
 	}
@@ -53,7 +53,7 @@ public class NormaDiPreparazione {
 	
 	@Override
 	public boolean equals(Object obj) {
-		NormaDiPreparazione that = (NormaDiPreparazione) obj;
+		Norma that = (Norma) obj;
 		return this.nome.equals(that.nome);
 	}
 	

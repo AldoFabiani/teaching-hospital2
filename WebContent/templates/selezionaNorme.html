@@ -1,0 +1,32 @@
+
+<div class="row">
+	<div class="col-md-2 col-xs-4">
+		<h4>Norme</h4>
+	</div>
+	<div class="col-md-offset-7 col-md-3 col-xs-8">
+		<input type="text"
+			ng-model="normaCtrl.searchNorme" class="form-control"
+			id="projects_search" placeholder="Inserisci una norma...">
+	</div>
+</div>
+<div class="row">
+	<div id="normeContainer">
+		<div class="checkbox"
+			ng-repeat="norma in normaCtrl.norme | filter:normaCtrl.searchNorme | orderBy:'nome'"
+			title="norma" name="norma">
+			<label><input type="checkbox"
+				ng-click="inserimentoTipologiaEsameCtrl.changedStatusNorme($event,norma)" value="">
+				{{norma.nome}}</label>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<label>Vuoi inserire una nuova norma?</label>
+	</div>
+	<div class="col-md-8">
+		<button type="button" class="btn btn-primary-outline"
+			data-toggle="modal" data-target="#inserimentoNorma">New!</button>
+	</div>
+</div>
+<div ng-include="'templates/inserisciNorma.html'"></div>

@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div class="modal fade" id="inserimentoNormaDiPreparazione"
+<div class="modal fade" id="inserimentoNorma"
 	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -19,19 +19,19 @@
 
 				<div class="row">
 				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione"
+					ng-model="normaCtrl.nuovaNorma.nome"
 					placeholder="Inserisci il nome...">
 				</div>
 				<div class="row">
 				<textarea
-					ng-model="inserimentoTipologiaEsameCtrl.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione"
+					ng-model="normaCtrl.nuovaNorma.descrizione"
 					placeholder="Inserisci la descrizione..."></textarea>
 				</div>
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
 					<button type="button" class="btn btn-primary"
-						ng-click="inserimentoTipologiaEsameCtrl.inserisciNormaDiPreparazione()">
+						ng-click="normaCtrl.inserisciNorma()">
 						Inserisci</button>
 				</div>
 			</div>
