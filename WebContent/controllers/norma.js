@@ -1,5 +1,5 @@
 angular.module('teaching').controller("NormaController",
-		[ 'inserimentoService','$http', function($inserimentoService,$http) {
+		[ 'entityManagerService','$http', function($entityManagerService,$http) {
 			//mi salvo il contesto della funzione
 			var self = this;
 
@@ -34,31 +34,8 @@ angular.module('teaching').controller("NormaController",
 					$('#inserimentoNorma').modal('hide');
 
 				}
-				$inserimentoService.inserisciOggetto('norma',params,toDo);
+				$entityManagerService.inserisciOggetto('norma',params,toDo);
 
-//				$http({
-//				method : 'POST',
-//				url : 'inserisciNormaDiPreparazione',
-//				headers : {
-//				'Content-Type' : 'application/json'
-//				},
-//				params : {
-//				nome: self.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione,
-//				descrizione: self.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione
-//				}
-//				}).success(function(data) {
-//				console.log(data);
-//				self.normeDiPreparazione.push(
-//				{ 	id: parseFloat(data), 
-//				nome: self.nuovaNormaDiPreparazione.nomeNuovaNormaDiPreparazione,
-//				descrizione: self.nuovaNormaDiPreparazione.descrizioneNuovaNormaDiPreparazione
-//				}
-//				);
-//				$('input').val('');
-//				$('textarea').val('');
-//				$('#inserimentoNormaDiPreparazione').modal('hide');
-//				});
-				
 				
 			};
 			

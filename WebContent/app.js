@@ -33,7 +33,7 @@ angular
 											});
 		})
 		.factory(
-				'inserimentoService',[ '$http', function($http) {
+				'entityManagerService',[ '$http', function($http) {
 					var methods = {};
 					
 					// Inserisce un oggetto nel db
@@ -53,6 +53,15 @@ angular
 
 						});
 					};
+					
+					methods.getOggetto = function(url,toDo){
+						$http({
+							method : 'GET',
+							url : url,
+						}).then(function successCallback(response) {
+							toDo(response);
+						});
+					}
 					return methods;
 					
 				}]
