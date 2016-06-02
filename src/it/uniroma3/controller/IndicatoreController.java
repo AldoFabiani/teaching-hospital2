@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.uniroma3.model.IndicatoreDiRisultato;
-import it.uniroma3.model.Norma;
-import it.uniroma3.persistence.IndicatoreDiRisultatoDao;
-import it.uniroma3.persistence.IndicatoreDiRisultatoDaoJPA;
-import it.uniroma3.persistence.NormaDao;
-import it.uniroma3.persistence.NormaDaoJPA;
+import it.uniroma3.model.Indicatore;
+import it.uniroma3.persistence.IndicatoreDao;
+import it.uniroma3.persistence.IndicatoreDaoJPA;
 
-@WebServlet("/inserisciIndicatoreDiRisultato")
-public class InserisciIndicatoreDiRisultatoController extends HttpServlet {
+@WebServlet("/indicatore")
+public class IndicatoreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -24,8 +21,8 @@ public class InserisciIndicatoreDiRisultatoController extends HttpServlet {
 
 		String nome = req.getParameter("nome");
 		
-		IndicatoreDiRisultato daInserire = new IndicatoreDiRisultato(nome);
-		IndicatoreDiRisultatoDao dao = new IndicatoreDiRisultatoDaoJPA();
+		Indicatore daInserire = new Indicatore(nome);
+		IndicatoreDao dao = new IndicatoreDaoJPA();
 		dao.save(daInserire);
 		
 		resp.getWriter().write(daInserire.getId().toString());

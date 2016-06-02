@@ -8,7 +8,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-9 col-xs-8">
 				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nomeTipologiaEsame"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nome"
 					class="form-control" id="projects_search"
 					placeholder="Inserisci il nome della tipologia...">
 			</div>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-9 col-xs-8">
 				<textarea
-					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizioneTipologiaEsame"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizione"
 					class="form-control" rows="5" id="descrizione"
 					placeholder="Inserisci una norma..."></textarea>
 			</div>
@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-9 col-xs-8">
 				<input type="number" min="1" step="any"
-					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costoTipologiaEsame"
+					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costo"
 					class="form-control" id="projects_search"
 					placeholder="Inserisci il costo...">
 			</div>
@@ -42,21 +42,21 @@
 
 
 		<!-- Inserimento indicatori-->
-		<div ng-include="'templates/selezionaIndicatori.html'"></div>
+		<div ng-include="'templates/selezionaIndicatori.html'" ng-controller="IndicatoreController as indicatoreCtrl"></div>
 
 		<!-- Live preview -->
 		<div id="prenotazioneInserita">
 			<ul>
 				<li>Il nome della tipologia è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nomeTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nome}}</li>
 				<li>La descrizione è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizioneTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizione}}</li>
 				<li>Il costo è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costoTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costo}}</li>
 				<li>La lista di norme è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.normeTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.norme}}</li>
 				<li>La lista di indicatori è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.indicatoriTipologiaEsame}}</li>
+					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.indicatori}}</li>
 			</ul>
 		</div>
 

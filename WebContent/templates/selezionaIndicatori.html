@@ -4,7 +4,7 @@
 			</div>
 			<div class="col-md-offset-7 col-md-3 col-xs-8">
 				<input type="text"
-					ng-model="inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato"
+					ng-model="indicatoreCtrl.searchIndicatori"
 					class="form-control" id="projects_search"
 					placeholder="Inserisci un indicatore...">
 			</div>
@@ -13,9 +13,9 @@
 			<div id="indicatoriContainer">
 
 				<div class="checkbox"
-					ng-repeat="indicatore in inserimentoTipologiaEsameCtrl.indicatoriDiRisultato | filter:inserimentoTipologiaEsameCtrl.searchIndicatoriDiRisultato | orderBy:'nome'"
+					ng-repeat="indicatore in indicatoreCtrl.indicatori | filter:indicatoreCtrl.searchIndicatori | orderBy:'nome'"
 					title="indicatore" name="indicatore">
-					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatoriDiRisultato($event, indicatore)"
+					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatori($event, indicatore)"
 					value="">{{indicatore.nome}}</label>
 				</div>
 			</div>
@@ -26,8 +26,8 @@
 			</div>
 			<div class="col-md-8">
 				<button type="button" class="btn btn-primary-outline"
-					data-toggle="modal" data-target="#inserimentoIndicatoreDiRisultato">
+					data-toggle="modal" data-target="#inserimentoIndicatore">
 					New!</button>
 			</div>
 		</div>
-		<div ng-include="'templates/inserisciIndicatoreDiRisultato.html'"></div>
+		<div ng-include="'templates/inserisciIndicatore.html'"></div>

@@ -99,6 +99,7 @@ angular
 				$(event.target).toggleClass("active");
 			};
 
+<<<<<<< HEAD
 							this.makeNewPrenotazione = function() {
 								self.prenotazione.paziente = self.paziente.codiceFiscale;
 								self.prenotazione.medico = self.medico.nome
@@ -108,5 +109,13 @@ angular
 								self.prenotazione.prezzo = $filter('currency')(
 										self.tipologia.costo, "€");
 							}
+=======
+			// al click selezioni la tipologia
+			this.addTipologia = function(tipologia) {
+				self.tipologia = tipologia;
+				$(event.target).siblings().removeClass("active");
+				$(event.target).toggleClass("active");
+			};
+>>>>>>> refs/remotes/origin/master
 
 						} ]);

@@ -13,13 +13,11 @@
 
 
 <div class="list-group">
-	<button
-			 type="button" ng-repeat="medico in mediciCtrl.medici | filter:mediciCtrl.searchMedici | orderBy:'specializzazione'"
-			class="list-group-item" title="medico" name="medico"
-			ng-click="inserimentoPrenotazioneCtrl.selectMedico(medico)"
-			>{{medico.nome}} {{medico.cognome}}
-			 <em
-			class="specializzazione">Specializzazione:
-				{{medico.specializzazione}}</em>
-		</button>
+	<button type="button"
+		ng-repeat="medico in mediciCtrl.medici | filter:mediciCtrl.searchMedici | orderBy:'specializzazione'"
+		class="list-group-item" title="medico" name="medico"
+		ng-click="inserimentoPrenotazioneCtrl.selectMedico(medico)">
+		{{medico.nome}} {{medico.cognome}} <em class="specializzazione">Specializzazione:
+			{{medico.specializzazione}}</em>
+	</button>
 </div>

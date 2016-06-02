@@ -48,8 +48,6 @@ angular
 						}).success(function(data) {
 							console.log(data);
 							toDo();
-							$('input').val('');
-							$('textarea').val('');
 
 						});
 					};

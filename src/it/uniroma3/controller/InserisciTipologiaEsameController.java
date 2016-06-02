@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma3.model.TipologiaEsame;
-import it.uniroma3.persistence.IndicatoreDiRisultatoDao;
-import it.uniroma3.persistence.IndicatoreDiRisultatoDaoJPA;
+import it.uniroma3.persistence.IndicatoreDao;
+import it.uniroma3.persistence.IndicatoreDaoJPA;
 import it.uniroma3.persistence.NormaDao;
 import it.uniroma3.persistence.NormaDaoJPA;
 import it.uniroma3.persistence.TipologiaEsameDao;
@@ -25,24 +25,24 @@ public class InserisciTipologiaEsameController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write("QUI CI ARRIVO -> line 27 AGGIORNATO");
-		String nomeTipologiaEsame = req.getParameter("nomeTipologiaEsame");
-		String descrizioneTipologiaEsame = req.getParameter("descrizioneTipologiaEsame");
-		String costoTipologiaEsame = req.getParameter("costoTipologiaEsame");
+		String nome = req.getParameter("nome");
+		String descrizione = req.getParameter("descrizione");
+		String costo = req.getParameter("costo");
 
-		String[] norme = req.getParameterValues("normeTipologiaEsame");
-		String[] indicatori = req.getParameterValues("indicatoriTipologiaEsame");
+		String[] norme = req.getParameterValues("norme");
+		String[] indicatori = req.getParameterValues("indicatori");
 		resp.getWriter().write("QUI CI ARRIVO -> line 33" + norme[0] + " " +norme[1]);
 
-		TipologiaEsame nuovaTipologiaEsame = new TipologiaEsame(nomeTipologiaEsame, descrizioneTipologiaEsame, Float.valueOf(costoTipologiaEsame));
+		TipologiaEsame nuovaTipologiaEsame = new TipologiaEsame(nome, descrizione, Float.valueOf(costo));
 		for(Long id : getIds(norme)){
 			NormaDao daoNorma = new NormaDaoJPA();
-			//			nuovaTipologiaEsame.addNormaDiPreparazione(daoNorma.findByPrimaryKey(id));
+			//			nuovaTipologiaEsame.addNorma(daoNorma.findByPrimaryKey(id));
 			daoNorma.findByPrimaryKey(id);
 		}
 		resp.getWriter().write("QUI CI ARRIVO -> line 40");
 		for(Long id: getIds(indicatori)){
-			IndicatoreDiRisultatoDao daoIndicatore = new IndicatoreDiRisultatoDaoJPA();
-			//			nuovaTipologiaEsame.addIndicatoreDiRisultato(daoIndicatore.findByPrimaryKey(id));
+			IndicatoreDao daoIndicatore = new IndicatoreDaoJPA();
+			//			nuovaTipologiaEsame.addIndicatore(daoIndicatore.findByPrimaryKey(id));
 			daoIndicatore.findByPrimaryKey(id);
 		}
 		resp.getWriter().write("QUI CI ARRIVO -> line 45");
