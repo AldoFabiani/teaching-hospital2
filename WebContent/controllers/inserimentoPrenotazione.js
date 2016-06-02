@@ -9,10 +9,6 @@ angular
 							// mi salvo il contesto della funzione
 							var self = this;
 
-							// liste bindate e caricate dal GET
-							self.tipologie = [];
-							self.medici = [];
-
 							// medico, tipologia, paziente e data esame
 							// selezionati
 							self.medico = {};
@@ -24,44 +20,28 @@ angular
 							// booleano per ng-show e hide
 							self.hoCercatoPaziente = false;
 							self.previewPronto = true;
-							// per i filtri
-							self.searchMedici;
-							self.searchTipologie;
 
-							// GET per la lista delle tipologie e la lista dei
-							// medici
-							self.getTipologie = function(){
-								doTask = function(response){
-									self.tipologie = response.data;
-								};
-								$entityManagerService.getOggetto('inserisciNuovaPrenotazione', doTask);	
-							};
-							self.getTipologie();
 							// se è presente carica il paziente per mostrarlo
 							// all'amministratore
 							// durante la conferma
 							this.trovaPaziente = function() {
 								$("#myButton").button('loading');
-								$http(
-										{
-											method : 'GET',
-											url : 'findPaziente',
-											headers : {
-												'Content-Type' : 'application/json'
-											},
-											params : {
-												codiceFiscale : self.codiceFiscalePaziente
-											}
-										}).then(function(response) {
+								setPaziente = function(response) {
 									self.paziente = response.data;
 									self.hoCercatoPaziente = true;
 									$("#myButton").button('reset');
-
-								}, function(response) {
+								};
+								getFailed = function(response) {
 									self.paziente = {};
 									self.hoCercatoPaziente = true;
 									$("#myButton").button('reset');
-								});
+								};
+								params = {
+									codiceFiscale : self.codiceFiscalePaziente
+								};
+								$entityManagerService.getOggetto(
+										'findPaziente', params, setPaziente,
+										getFailed);
 							};
 
 							// al click selezioni il medico
@@ -76,30 +56,15 @@ angular
 
 							};
 
-							// aggiungi una prenotazione nella base di dati
-							this.aggiungiPrenotazione = function() {
-								params = {
-									medico : self.medico.codice,
-									tipologia : self.tipologia.nome,
-									codiceFiscale : self.paziente.codiceFiscale,
-									dataEsame : self.dataEsame
-								}
-								doTask = function(response){
-									self.paziente = {};
-									self.hoCercatoPaziente = false;
-									$('li').removeClass('active');
-									$('#prenotazioneAggiunta').modal('hide');
-								}
-								$entityManagerService.inserisciOggetto('inserisciPrenotazione', params, doTask); 
+							// al click selezioni la tipologia
+							this.addTipologia = function(tipologia) {
+								self.tipologia = tipologia;
+								$(event.target).siblings()
+										.removeClass("active");
+								$(event.target).toggleClass("active");
 							};
-			// al click selezioni la tipologia
-			this.addTipologia = function(tipologia) {
-				self.tipologia = tipologia;
-				$(event.target).siblings().removeClass("active");
-				$(event.target).toggleClass("active");
-			};
 
-<<<<<<< HEAD
+							// fa la preview della prenotazione
 							this.makeNewPrenotazione = function() {
 								self.prenotazione.paziente = self.paziente.codiceFiscale;
 								self.prenotazione.medico = self.medico.nome
@@ -108,14 +73,25 @@ angular
 								self.prenotazione.data = self.dataEsame;
 								self.prenotazione.prezzo = $filter('currency')(
 										self.tipologia.costo, "€");
-							}
-=======
-			// al click selezioni la tipologia
-			this.addTipologia = function(tipologia) {
-				self.tipologia = tipologia;
-				$(event.target).siblings().removeClass("active");
-				$(event.target).toggleClass("active");
-			};
->>>>>>> refs/remotes/origin/master
+							};
 
+							// aggiungi una prenotazione nella base di dati
+							this.aggiungiPrenotazione = function() {
+								params = {
+									medico : self.medico.codice,
+									tipologia : self.tipologia.nome,
+									codiceFiscale : self.paziente.codiceFiscale,
+									dataEsame : self.dataEsame
+								}
+								doTask = function(response) {
+									self.paziente = {};
+									self.hoCercatoPaziente = false;
+									$('li').removeClass('active');
+									$('#prenotazioneAggiunta').modal('hide');
+								}
+								$entityManagerService
+										.inserisciOggetto(
+												'inserisciPrenotazione',
+												params, doTask);
+							};
 						} ]);

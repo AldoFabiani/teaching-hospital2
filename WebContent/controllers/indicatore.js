@@ -18,7 +18,7 @@ angular.module('teaching').controller("IndicatoreController",
 				var doTask= function(response){
 					self.indicatori = response.data;
 				}
-				$entityManagerService.getOggetto('indicatori',doTask);
+				$entityManagerService.getOggetti('indicatori',doTask);
 			}
 
 			// aggiungi un indicatore nella base di dati

@@ -5,7 +5,7 @@
 	</div>
 	<div class="col-md-offset-7 col-md-3 col-xs-8">
 		<input type="text"
-			ng-model="inserimentoPrenotazioneCtrl.searchTipologie"
+			ng-model="tipologieCtrl.searchTipologie"
 			class="form-control" id="projects_search"
 			placeholder="Inserisci il nome...">
 	</div>
@@ -14,7 +14,7 @@
 
 <div class="list-group">
 	<button class="list-group-item"
-			ng-repeat="tipologia in inserimentoPrenotazioneCtrl.tipologie | filter:inserimentoPrenotazioneCtrl.searchTipologie | orderBy:'nome'"
+			ng-repeat="tipologia in tipologieCtrl.tipologie | filter:tipologieCtrl.searchTipologie | orderBy:'nome'"
 			title="tipologia" name="tipologia"
 			ng-click="inserimentoPrenotazioneCtrl.addTipologia(tipologia)">{{tipologia.nome}}
 			{{tipologia.costo | currency:"€"}}

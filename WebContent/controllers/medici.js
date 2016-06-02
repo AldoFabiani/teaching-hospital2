@@ -11,7 +11,7 @@ angular.module('teaching').controller("MediciController",
 			};
 			
 			self.getMedici = function(){
-				$entityManagerService.getOggetto('mediciController',self.setMedici);
+				$entityManagerService.getOggetti('mediciController',self.setMedici);
 			};
 			
 			self.getMedici();
