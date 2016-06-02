@@ -32,7 +32,6 @@ angular.module('teaching').controller("NormaController",
 				var toDo= function(){
 					self.refresh();
 					$('#inserimentoNorma').modal('hide');
-
 				}
 				$inserimentoService.inserisciOggetto('norma',params,toDo);
 				

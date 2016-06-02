@@ -1,5 +1,5 @@
 angular.module('teaching').controller("IndicatoreController",
-		[ 'inserimentoService','$http', function($inserimentoService,$http) {
+		[ 'entityManagerService', function($entityManagerService) {
 			//mi salvo il contesto della funzione
 			var self = this;
 
@@ -14,12 +14,11 @@ angular.module('teaching').controller("IndicatoreController",
 
 			// GET per la lista di tutti gli indicatori presenti nel sistema
 			self.refresh = function(){
-				$http({
-					method : 'GET',
-					url : 'indicatori',
-				}).then(function successCallback(response) {
+				
+				var doTask= function(response){
 					self.indicatori = response.data;
-				});
+				}
+				$entityManagerService.getOggetto('indicatori',doTask);
 			}
 
 			// aggiungi un indicatore nella base di dati
@@ -30,10 +29,8 @@ angular.module('teaching').controller("IndicatoreController",
 
 				var toDo= function(){
 					self.refresh();
-					$('#inserimentoIndicatore').modal('hide');
-
 				}
-				$inserimentoService.inserisciOggetto('indicatore',params,toDo);
+				$entityManagerService.inserisciOggetto('indicatore',params,toDo);
 				
 			};
 			
