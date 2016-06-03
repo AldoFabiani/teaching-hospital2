@@ -35,20 +35,21 @@
 		<h4>Dati del paziente:</h4>
 		<dl class="dl-horizontal">
 			<div ng-repeat="(key,value) in inserimentoPrenotazioneCtrl.paziente">
-				<dt class="first-letter-capital">
-				{{key}}</dt>
+				<dt class="first-letter-capital">{{key}}</dt>
 				<dd>{{value}}</dd>
 			</div>
+		</dl>
 	</div>
 </div>
 
 <form name="inserimentoPrenotazione"
 	ng-submit="inserimentoPrenotazioneCtrl.aggiungiPrenotazione()">
 	<!--SELEZIONA MEDICO  -->
-	<div id="mediciContainer" ng-include="'templates/selezionaMedico.html'"></div>
+	<div id="mediciContainer" ng-include="'templates/selezionaMedico.html'"
+		ng-controller="MediciController as mediciCtrl"></div>
 	<!--SELEZIONA TIPOLOGIA -->
 	<div ng-include="'templates/selezionaTipologia.html'"
-		id="tipologiaContainer"></div>
+		ng-controller="TipologieController as tipologieCtrl" id="tipologiaContainer"></div>
 
 
 	<!-- Live preview -->
@@ -62,9 +63,9 @@
 				ng-model="inserimentoPrenotazioneCtrl.dataEsame">
 		</div>
 		<div class="col-md-9">
-			<button ng-click="inserimentoPrenotazioneCtrl.makeNewPrenotazione()" type="button" class="btn btn-primary btn-lg"
-				data-toggle="modal" data-target="#prenotazioneAggiunta">Aggiungi
-				Prenotazione</button>
+			<button ng-click="inserimentoPrenotazioneCtrl.makeNewPrenotazione()"
+				type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+				data-target="#prenotazioneAggiunta">Aggiungi Prenotazione</button>
 		</div>
 	</div>
 	<div ng-include="'view/preview/previewPrenotazione.html'"
