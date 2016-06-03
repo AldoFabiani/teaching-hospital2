@@ -15,7 +15,7 @@
 				<div class="checkbox"
 					ng-repeat="indicatore in indicatoreCtrl.indicatori | filter:indicatoreCtrl.searchIndicatori | orderBy:'nome'"
 					title="indicatore" name="indicatore">
-					<label><input type="checkbox" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatori($event, indicatore)"
+					<label><input type="checkbox" ng-checked="inserimentoTipologiaEsameCtrl.isIndicatoreChecked(indicatore.id)" ng-click="inserimentoTipologiaEsameCtrl.changedStatusIndicatori($event, indicatore)"
 					value="">{{indicatore.nome}}</label>
 				</div>
 			</div>

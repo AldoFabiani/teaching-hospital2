@@ -50,6 +50,13 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 				var index = self.nuovaTipologiaEsame.indicatori.indexOf(idIndicatore);
 				if(index>-1) self.nuovaTipologiaEsame.indicatori.splice(index, 1);
 			};
+			
+			this.isNormaChecked = function(idNorma){
+				return (self.nuovaTipologiaEsame.norme.indexOf(idNorma)>=0);
+			}
+			this.isIndicatoreChecked = function(idIndicatore){
+				return (self.nuovaTipologiaEsame.indicatori.indexOf(idIndicatore)>=0);
+			}
 
 			// aggiungi una tipologia di esame nella base di dati
 			// caso per il momento semplificato:

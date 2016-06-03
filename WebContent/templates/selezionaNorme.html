@@ -15,6 +15,7 @@
 			ng-repeat="norma in normaCtrl.norme | filter:normaCtrl.searchNorme | orderBy:'nome'"
 			title="norma" name="norma">
 			<label><input type="checkbox"
+			ng-checked="inserimentoTipologiaEsameCtrl.isNormaChecked(norma.id)"
 				ng-click="inserimentoTipologiaEsameCtrl.changedStatusNorme($event,norma)" value="">
 				{{norma.nome}}</label>
 		</div>
