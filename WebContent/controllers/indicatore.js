@@ -14,7 +14,7 @@ angular.module('teaching').controller("IndicatoreController",
 
 			// GET per la lista di tutti gli indicatori presenti nel sistema
 			self.refresh = function(){
-				
+
 				var doTask= function(response){
 					self.indicatori = response.data;
 				}
@@ -23,17 +23,19 @@ angular.module('teaching').controller("IndicatoreController",
 
 			// aggiungi un indicatore nella base di dati
 			this.inserisciIndicatore = function() {
-				var params = {
+				params = {
 						nome: self.nuovoIndicatore.nome
 				}
 
-				var toDo= function(){
+				doTask= function(){
 					self.refresh();
+					$(':input','#inserimentoIndicatore').val('');
+					$('#inserimentoIndicatore').modal('hide');
 				}
-				$entityManagerService.inserisciOggetto('indicatore',params,toDo);
-				
+				$entityManagerService.inserisciOggetto('indicatore',params,doTask);
+
 			};
-			
+
 			self.refresh();
 
 		} ]);

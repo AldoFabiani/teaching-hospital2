@@ -11,4 +11,5 @@ public interface NormaDao {
 	public List<Norma> findAll();       
 //	public void update(Norma norma); //Update
 //	public void delete(Norma norma); //Delete	
+	public Norma findByNome(String nomeNorma);
 }

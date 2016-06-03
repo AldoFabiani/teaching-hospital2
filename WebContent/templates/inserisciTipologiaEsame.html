@@ -1,4 +1,5 @@
-<!-- Inserimento norme-->
+<h2>Nuova tipologia esame</h2>
+
 <div>
 	<form
 		ng-submit="inserimentoTipologiaEsameCtrl.aggiungiTipologiaEsame()">
@@ -6,7 +7,7 @@
 			<div class="col-md-2 col-xs-4">
 				<h4>Nome</h4>
 			</div>
-			<div class="col-md-offset-1 col-md-9 col-xs-8">
+			<div class="col-md-10 col-xs-8">
 				<input type="text"
 					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nome"
 					class="form-control" id="projects_search"
@@ -17,7 +18,7 @@
 			<div class="col-md-2 col-xs-4">
 				<h4>Descrizione</h4>
 			</div>
-			<div class="col-md-offset-1 col-md-9 col-xs-8">
+			<div class="col-md-10 col-xs-8">
 				<textarea
 					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizione"
 					class="form-control" rows="5" id="descrizione"
@@ -28,7 +29,7 @@
 			<div class="col-md-2 col-xs-4">
 				<h4>Costo</h4>
 			</div>
-			<div class="col-md-offset-1 col-md-9 col-xs-8">
+			<div class="col-md-10 col-xs-8">
 				<input type="number" min="1" step="any"
 					ng-model="inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costo"
 					class="form-control" id="projects_search"
@@ -42,28 +43,13 @@
 
 
 		<!-- Inserimento indicatori-->
-		<div ng-include="'templates/selezionaIndicatori.html'" ng-controller="IndicatoreController as indicatoreCtrl"></div>
+		<div ng-include="'templates/selezionaIndicatori.html'"
+			ng-controller="IndicatoreController as indicatoreCtrl"></div>
 
-		<!-- Live preview -->
-		<div id="prenotazioneInserita">
-			<ul>
-				<li>Il nome della tipologia è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.nome}}</li>
-				<li>La descrizione è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.descrizione}}</li>
-				<li>Il costo è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.costo}}</li>
-				<li>La lista di norme è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.norme}}</li>
-				<li>La lista di indicatori è:
-					{{inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame.indicatori}}</li>
-			</ul>
-		</div>
+		<button type="button" class="btn btn-primary btn-lg btn-block"
+			data-toggle="modal" data-target="#tipologiaAggiunta">
+			Aggiungi Tipologia</button>
 
-
-		<div class="row">
-			<button type="submit" class="btn btn-primary btn-lg btn-block">
-				Inserisci tipologia</button>
-		</div>
+		<div ng-include="'view/preview/previewNuovaTipologia.html'"></div>
 	</form>
 </div>

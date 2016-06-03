@@ -1,11 +1,14 @@
 angular.module('teaching').controller("InserimentoTipologiaEsameController",
-		[ '$http', function($http) {
+		['entityManagerService','$filter', function($entityManagerService,$filter) {
 			//mi salvo il contesto della funzione
 			var self = this;
 			
 			//nome, descrizione e costo della nuova tipologia di esame 
 			// e tutte le sue norme di preparazione e i suoi indicatori di risultato
 			self.nuovaTipologiaEsame = {
+					nome: '',
+					descrizione: '',
+					costo: '',
 					norme: [],
 					indicatori: []
 			};
@@ -13,72 +16,73 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 			this.changedStatusNorme = function($event,norma){
 				var checkbox = $event.target;
 				if(checkbox.checked==true){
-					self.addNorma(norma.id);
+					self.addNorma(norma.nome);
 				}
 				else{
-					self.removeNorma(norma.id);
+					self.removeNorma(norma.nome);
 				}
 			}
 			this.changedStatusIndicatori = function($event,indicatore){
 				  var checkbox = $event.target;
 				  if(checkbox.checked==true){
-					  self.addIndicatore(indicatore.id);
+					  self.addIndicatore(indicatore.nome);
 				  }
 				  else{
-					  self.removeIndicatore(indicatore.id);
+					  self.removeIndicatore(indicatore.nome);
 				  }
 			}
 			
 			// seleziono una norma di preparazione
-			this.addNorma = function(idNorma) {
-				self.nuovaTipologiaEsame.norme.push(idNorma);
+			this.addNorma = function(nomeNorma) {
+				self.nuovaTipologiaEsame.norme.push(nomeNorma);
 			};
 			
 			// deseleziono una norma di preparazione
-			this.removeNorma = function(idNorma) {
-				var index = self.nuovaTipologiaEsame.norme.indexOf(idNorma);
+			this.removeNorma = function(nomeNorma) {
+				var index = self.nuovaTipologiaEsame.norme.indexOf(nomeNorma);
 				if(index>-1) self.nuovaTipologiaEsame.norme.splice(index, 1);
 			};
 
 			// seleziono un indicatore di risultato
-			this.addIndicatore = function(idIndicatore) {
-				self.nuovaTipologiaEsame.indicatori.push(idIndicatore);
+			this.addIndicatore = function(nomeIndicatore) {
+				self.nuovaTipologiaEsame.indicatori.push(nomeIndicatore);
 			};
 			
 			// deseleziono un indicatore di risultato
-			this.removeIndicatore = function(idIndicatore) {
-				var index = self.nuovaTipologiaEsame.indicatori.indexOf(idIndicatore);
+			this.removeIndicatore = function(nomeIndicatore) {
+				var index = self.nuovaTipologiaEsame.indicatori.indexOf(nomeIndicatore);
 				if(index>-1) self.nuovaTipologiaEsame.indicatori.splice(index, 1);
 			};
 			
-			this.isNormaChecked = function(idNorma){
-				return (self.nuovaTipologiaEsame.norme.indexOf(idNorma)>=0);
+			this.isNormaChecked = function(nomeNorma){
+				return (self.nuovaTipologiaEsame.norme.indexOf(nomeNorma)>=0);
 			}
-			this.isIndicatoreChecked = function(idIndicatore){
-				return (self.nuovaTipologiaEsame.indicatori.indexOf(idIndicatore)>=0);
+			this.isIndicatoreChecked = function(nomeIndicatore){
+				return (self.nuovaTipologiaEsame.indicatori.indexOf(nomeIndicatore)>=0);
 			}
-
+			
 			// aggiungi una tipologia di esame nella base di dati
 			// caso per il momento semplificato:
 			// - no controllo sul nome
 			this.aggiungiTipologiaEsame = function() {
-				$http({
-					method : 'POST',
-					url : 'inserisciTipologiaEsame',
-					headers : {
-						'Content-Type' : 'application/json'
-					},
-					params : {
-						nomeTipologiaEsame : self.nuovaTipologiaEsame.nome,
-						descrizioneTipologiaEsame: self.nuovaTipologiaEsame.descrizione,
-						costoTipologiaEsame: self.nuovaTipologiaEsame.costo,
-						norme: self.nuovaTipologiaEsame.norme,
-						indicatori: self.nuovaTipologiaEsame.indicatori
-						
-					}
-				}).success(function(data) {
-					console.log(data);
-				});
+				params = {
+					nome : self.nuovaTipologiaEsame.nome,
+					descrizione: self.nuovaTipologiaEsame.descrizione,
+					costo: self.nuovaTipologiaEsame.costo,
+					norme: self.nuovaTipologiaEsame.norme,
+					indicatori: self.nuovaTipologiaEsame.indicatori
+				};
+				doTask = function() {
+					$(':input').val('');
+					$(':checkbox').val('');
+					self.nuovaTipologiaEsame.nome='';
+					self.nuovaTipologiaEsame.descrizione='';
+					self.nuovaTipologiaEsame.costo='';
+//					self.nuovaTipologiaEsame.norme=[];
+//					self.nuovaTipologiaEsame.indicatori=[];
+					$('#tipologiaAggiunta').modal('hide');
+				};
+				$entityManagerService.inserisciOggetto('inserisciTipologiaEsame', params,doTask);		
 			};
 
 		} ]);

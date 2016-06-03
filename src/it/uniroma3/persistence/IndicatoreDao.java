@@ -11,4 +11,5 @@ public interface IndicatoreDao {
 	public List<Indicatore> findAll();       
 //	public void update(Indicatore indicatore); //Update
 //	public void delete(Indicatore indicatore); //Delete	
+	public Indicatore findByNome(String nomeIndicatore);
 }

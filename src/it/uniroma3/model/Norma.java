@@ -61,4 +61,9 @@ public class Norma {
 	public int hashCode() {
 		return this.nome.hashCode();
 	}
+	
+	@Override
+	public String toString() {
+		return "nome:" + this.nome + " descrizione:" + this.descrizione;
+	}
 }

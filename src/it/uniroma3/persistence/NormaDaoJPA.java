@@ -38,6 +38,7 @@ public class NormaDaoJPA extends DaoJPA implements NormaDao {
 		return norma;
 	}
 
+	@Override
 	public Norma findByNome(String nomeNorma) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();

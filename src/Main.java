@@ -10,16 +10,20 @@ import it.uniroma3.model.Paziente;
 import it.uniroma3.model.TipologiaEsame;
 import it.uniroma3.persistence.MedicoDao;
 import it.uniroma3.persistence.MedicoDaoJPA;
+import it.uniroma3.persistence.NormaDao;
+import it.uniroma3.persistence.NormaDaoJPA;
 import it.uniroma3.persistence.PazienteDaoJPA;
 import it.uniroma3.persistence.TipologiaEsameDaoJPA;
 
 public class Main {
 public static void main(String[] args){
-	TipologiaEsame t = new TipologiaEsame("tipo1","una tipologia",5F);
-//	t.addNormaDiPreparazione(new Norma("no-pregnant","esame vietato per donne incinte"));
-//	t.addNormaDiPreparazione(new Norma("no-aldarelli","esame vietato per aldarelli"));
-//	t.addIndicatoreDiRisultato(new Indicatore("da quanto sei incinta"));
-	TipologiaEsameDaoJPA dao = new TipologiaEsameDaoJPA();
-	dao.save(t);
+//	TipologiaEsame t = new TipologiaEsame("tipo1","una tipologia",5F);
+//	TipologiaEsameDaoJPA dao = new TipologiaEsameDaoJPA();
+//	dao.save(t);
+	NormaDao daoN = new NormaDaoJPA();
+	
+	Norma n = new Norma("no-pregnant","descrizione");
+	daoN.save(n);
+	System.out.println(n);
 }
 }

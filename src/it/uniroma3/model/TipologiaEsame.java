@@ -24,23 +24,23 @@ public class TipologiaEsame {
 	private String descrizione;
 	@Column(nullable = false)
 	private Float costo;
-//	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
-//	private Set<Norma> norme;
-//	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
-//	private Set<Indicatore> indicatori;
+	@ManyToMany
+	private Set<Norma> norme;
+	@ManyToMany
+	private Set<Indicatore> indicatori;
 
 
 	public TipologiaEsame() {
-//		this.norme = new HashSet<Norma>();
-//		this.indicatori = new HashSet<Indicatore>();
+		this.norme = new HashSet<Norma>();
+		this.indicatori = new HashSet<Indicatore>();
 	}
 	
 	public TipologiaEsame(String nome, String descrizione, Float costo) {
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.costo = costo;
-//		this.norme = new HashSet<Norma>();
-//		this.indicatori = new HashSet<Indicatore>();
+		this.norme = new HashSet<Norma>();
+		this.indicatori = new HashSet<Indicatore>();
 	}
 
 	public Long getId() {
@@ -76,21 +76,21 @@ public class TipologiaEsame {
 	}
 	
 
-//	public Set<Norma> getNorme() {
-//		return norme;
-//	}
-//
-//	public void setNorme(Set<Norma> norme) {
-//		this.norme = norme;
-//	}
-//
-//	public Set<Indicatore> getIndicatori() {
-//		return indicatori;
-//	}
-//
-//	public void setIndicatori(Set<Indicatore> indicatori) {
-//		this.indicatori = indicatori;
-//	}
+	public Set<Norma> getNorme() {
+		return norme;
+	}
+
+	public void setNorme(Set<Norma> norme) {
+		this.norme = norme;
+	}
+
+	public Set<Indicatore> getIndicatori() {
+		return indicatori;
+	}
+
+	public void setIndicatori(Set<Indicatore> indicatori) {
+		this.indicatori = indicatori;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -103,12 +103,12 @@ public class TipologiaEsame {
 		return this.getNome().hashCode();
 	}
 
-//	public void addNorma(Norma norma) {
-//		this.norme.add(norma);
-//		
-//	}
-//
-//	public void addIndicatore(Indicatore indicatore) {
-//		this.indicatori.add(indicatore);
-//	}
+	public void addNorma(Norma norma) {
+		this.getNorme().add(norma);
+		
+	}
+
+	public void addIndicatore(Indicatore indicatore) {
+		this.getIndicatori().add(indicatore);
+	}
 }

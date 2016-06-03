@@ -2,8 +2,7 @@ angular.module('teaching').controller(
 		"NormaController",
 		[
 				'entityManagerService',
-				'$http',
-				function($entityManagerService, $http) {
+				function($entityManagerService) {
 					// mi salvo il contesto della funzione
 					var self = this;
 
@@ -18,29 +17,29 @@ angular.module('teaching').controller(
 
 					// GET per la lista di tutte le norme presenti nel sistema
 					self.refresh = function() {
-						$http({
-							method : 'GET',
-							url : 'norme',
-						}).then(function successCallback(response) {
+						
+						doTask = function(response){
 							self.norme = response.data;
-						});
+						}
+						$entityManagerService.getOggetti('norme', doTask);
 					}
 
 					// aggiungi una norma nella base di dati
 					this.inserisciNorma = function() {
-						var params = {
+						params = {
 							nome : self.nuovaNorma.nome,
 							descrizione : self.nuovaNorma.descrizione
 						}
 
-						var toDo = function() {
+						doTask = function() {
 							self.refresh();
+							$(':input','#inserimentoNorma').val('');
 							$('#inserimentoNorma').modal('hide');
 						};
 						$entityManagerService.inserisciOggetto('norma', params,
-								toDo);
-
-						self.refresh();
+								doTask);
 
 					}
+					
+					self.refresh();
 				} ]);

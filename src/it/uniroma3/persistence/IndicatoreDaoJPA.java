@@ -38,6 +38,7 @@ public class IndicatoreDaoJPA extends DaoJPA implements IndicatoreDao {
 		return indicatore;
 	}
 
+	@Override
 	public Indicatore findByNome(String nomeIndicatore) {
 		EntityTransaction tx = this.entityManager.getTransaction();
 		tx.begin();
