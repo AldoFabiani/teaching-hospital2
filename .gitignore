@@ -7,10 +7,7 @@
 /build/
 /bin/  
 *.class  
-.project  
 .metadata 
-.settings
-.settings/ 
 .classpath  
 target/  
 local.properties 
