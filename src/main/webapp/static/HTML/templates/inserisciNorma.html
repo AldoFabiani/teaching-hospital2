@@ -1,0 +1,41 @@
+
+<!-- Modal -->
+<div class="modal fade" id="inserimentoNorma"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Raccolta dati nuova
+					norma di preparazione</h4>
+			</div>
+			<div class="modal-body">
+				<p>Controlla attentamente i dati immessi. Una volta premuto il
+					pulsante "Inserisci" la norma di preparazione verrà memorizzata nel
+					Sistema.</p>
+
+				<label>Nome:</label>
+				<input type="text"
+					ng-model="normaCtrl.nuovaNorma.nome"
+					placeholder="Inserisci il nome..." class="form-control">
+				
+				<label>Descrizione:</label>
+				<textarea
+					ng-model="normaCtrl.nuovaNorma.descrizione"
+					placeholder="Inserisci la descrizione..." class="form-control"></textarea>
+				
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="normaCtrl.inserisciNorma()">
+						Inserisci</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
