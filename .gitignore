@@ -8,7 +8,6 @@
 /bin/  
 *.class  
 .metadata 
-.classpath  
 target/  
 local.properties 
 .loadpath
