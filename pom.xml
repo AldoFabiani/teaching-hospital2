@@ -4,7 +4,7 @@
 	<groupId>it.uniroma3</groupId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>teaching-hospital</name>
+	<name>teaching-hospital-web</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.0.2.RELEASE</spring.version>
@@ -152,11 +152,11 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>teaching</finalName>
+		<finalName>teaching-hospital-web</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>teaching</artifactId>
+				<artifactId>teaching-hospital-web</artifactId>
 				<version>3.1</version>
 				<configuration>
 					<source>1.7</source>
@@ -165,5 +165,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<artifactId>teaching</artifactId>
+	<artifactId>teaching-hospital-web</artifactId>
 </project>

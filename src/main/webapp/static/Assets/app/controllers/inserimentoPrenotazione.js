@@ -46,8 +46,9 @@ angular
 									codiceFiscale : self.codiceFiscalePaziente
 								};
 								$entityManagerService.getOggetto(
-										'paziente/find/'+self.codiceFiscalePaziente, params, setPaziente,
-										getFailed);
+										'paziente/find/'
+												+ self.codiceFiscalePaziente,
+										params, setPaziente, getFailed);
 							};
 
 							// al click selezioni il medico
@@ -73,8 +74,10 @@ angular
 							// fa la preview della prenotazione
 							this.makeNewPrenotazione = function() {
 								self.prenotazione.paziente = self.paziente.codiceFiscale;
-								self.prenotazione.medico = self.medico.nome
-										+ self.medico.cognome;
+								if (self.medico.nome)
+									self.prenotazione.medico = self.medico.nome
+											+ ' ' + self.medico.cognome;
+								else self.prenotazione.medico='';
 								self.prenotazione.esame = self.tipologia.nome;
 								self.prenotazione.data = self.dataEsame;
 								self.prenotazione.prezzo = $filter('currency')(
@@ -91,13 +94,17 @@ angular
 								}
 								doTask = function(response) {
 									self.paziente = {};
+									self.codiceFiscalePaziente = '';
+									self.prenotazione = {};
+									self.tipologia = {};
+									self.medico = {};
+									self.dataEsame = null;
 									self.hoCercatoPaziente = false;
-									$('li').removeClass('active');
+									$('button').removeClass('active');
 									$('#prenotazioneAggiunta').modal('hide');
 								}
-								$entityManagerService
-										.inserisciOggetto(
-												'prenotazione/addPrenotazione',
-												params, doTask);
+								$entityManagerService.inserisciOggetto(
+										'prenotazione/addPrenotazione', params,
+										doTask);
 							};
 						} ]);
