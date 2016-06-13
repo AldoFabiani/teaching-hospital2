@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<global-method-security secured-annotations="enabled" />
+	
+	<http auto-config="true">
+<!-- 		<intercept-url pattern="/employee/*" access="ROLE_ADMIN" /> -->
+		<form-login login-processing-url="/login" login-page="/loginPage"
+			username-parameter="username" password-parameter="password"
+			default-target-url="/employee/listemployee"
+			authentication-failure-url="/loginPage?auth=fail" />
+		<logout logout-url="/logout" logout-success-url="/logoutPage" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select username, password, enabled from
+				user_authentication where username=?"
+				authorities-by-username-query="select username, authority from
+				user_authorization where username =? " />
+		</authentication-provider>
+	</authentication-manager>
+	
+</beans:beans>
