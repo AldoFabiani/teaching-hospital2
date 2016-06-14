@@ -16,6 +16,8 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="login" data-toggle="modal"
+					data-target="#login-modal">Login</a></li>
 				<li><a href="#/consultazioneTipologieEsamiOfferti/">Consulta
 						Esami Offerti</a></li>
 				<li><a href="#/consultazioneEsamiMedico">Consulta Esami
@@ -25,7 +27,7 @@
 				<li><a href="#/inserimentoTipologiaEsame/">Inserimento
 						Tipologia Esame</a></li>
 				<li role="separator" class="divider"></li>
-				<li><a href="#">Chi siamo</a></li>
+				<li><a href="#/chiSiamo/">Chi siamo</a></li>
 				</li>
 			</ul>
 		</div>
@@ -33,3 +35,21 @@
 	</div>
 	<!-- /.container-fluid -->
 </nav>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true"
+	style="display: none;">
+	<div class="modal-dialog">
+		<div class="loginmodal-container">
+			<h1>Login to THWeb</h1>
+			<br>
+			<form action="login" method="post">
+				<input type="text" name="username" placeholder="Username"> <input
+					type="password" name="password" placeholder="Password"> <input
+					type="submit" name="login" class="login loginmodal-submit"
+					value="Login">
+			</form>
+
+		</div>
+	</div>
+</div>

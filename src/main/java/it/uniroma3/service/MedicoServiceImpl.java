@@ -29,6 +29,6 @@ public class MedicoServiceImpl implements MedicoService {
 	@Override
 	@Transactional
 	public List<Prenotazione> listPrenotazioniMedico(String codiceMedico) {
-		return new ArrayList<>(this.findByCodice(codiceMedico).getPrenotazioni());
+		return new ArrayList<Prenotazione>(this.findByCodice(codiceMedico).getPrenotazioni());
 	}
 }

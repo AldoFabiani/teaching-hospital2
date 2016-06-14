@@ -33,8 +33,13 @@ angular
 									{
 										controller : 'PrenotazioniController as prenotazioniCtrl',
 										templateUrl : 'HTML/templates/consultazioneEsamiMedici.html'
+									})
+							.when(
+									'/chiSiamo',
+									{
+										templateUrl : 'HTML/templates/chisiamo.html'
 									}).otherwise({
-								redirectTo : '/'
+								templateUrl : 'HTML/templates/home.html'
 							});
 				}).factory('entityManagerService', [ '$http', function($http) {
 			var methods = {};

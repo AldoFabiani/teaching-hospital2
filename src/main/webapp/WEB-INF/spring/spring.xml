@@ -26,6 +26,7 @@
 	<mvc:resources mapping="/HTML/**" location="static/HTML/" />
 	<mvc:resources mapping="/templates/**" location="static/HTML/templates/" />
 	<mvc:resources mapping="/preview/**" location="static/HTML/preview/" />
+	<mvc:resources mapping="/img/**" location="static/Assets/img/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
