@@ -14,12 +14,14 @@ public class TipologiaFormValidator implements Validator{
 	}
 
 	@Override
-	public void validate(Object arg0, Errors arg1) {
+	public void validate(Object arg0, Errors error) {
 		TipologiaEsame tipologia = (TipologiaEsame) arg0;
-
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "nome", "tipologia.nome.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "descrizione", "tipologia.descrizione.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "costo", "tipologia.costo.required");
+		if(tipologia.getCosto() <=0){
+			error.rejectValue("costo", "negativeValue", new Object[]{"'costo'"}, "Il costo non può essere negativo");
+		}
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "nome", "tipologia.nome.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "descrizione", "tipologia.descrizione.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "costo", "tipologia.costo.required");
 	}
 	
 

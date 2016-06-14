@@ -18,7 +18,7 @@
 					<div
 						ng-repeat="(key,value) in inserimentoTipologiaEsameCtrl.nuovaTipologiaEsame">
 						<dt class="first-letter-capital">{{key}}</dt>
-						<dd>{{value}}</dd>
+						<dd>{{value}} <span ng-if="key=='costo'">€</span></dd>
 					</div>
 				</dl>
 			</div>
