@@ -27,6 +27,8 @@
 				value="buildSchema(SchemaAction=add,ForeignKeys=true)" />
 			<property name="openjpa.Log"
 				value="DefaultLevel=INFO, Runtime=INFO, Tool=INFO, SQL=TRACE" />
+			<property name="openjpa.jdbc.EagerFetchMode" value="parallel" />
+			<property name="openjpa.jdbc.SubclassFetchMode" value="join" />
 		</properties>
 	</persistence-unit>
 </persistence>

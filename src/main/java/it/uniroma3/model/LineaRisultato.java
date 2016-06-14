@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 @Entity
 public class LineaRisultato {
 	@Id
@@ -13,13 +15,13 @@ public class LineaRisultato {
 	private Long id;
 	@OneToOne
 	@JsonManagedReference private Indicatore indicatore;
-	private int valore;
+	private Integer valore;
 	
 	public LineaRisultato() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public LineaRisultato(Indicatore indicatore, int valore) {
+	public LineaRisultato(Indicatore indicatore, Integer valore) {
 		this.indicatore = indicatore;
 		this.valore = valore;
 	}
@@ -32,11 +34,11 @@ public class LineaRisultato {
 		this.indicatore = indicatore;
 	}
 
-	public int getValore() {
+	public Integer getValore() {
 		return valore;
 	}
 
-	public void setValore(int valore) {
+	public void setValore(Integer valore) {
 		this.valore = valore;
 	}
 	

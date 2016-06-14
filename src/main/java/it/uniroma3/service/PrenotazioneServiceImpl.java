@@ -1,7 +1,10 @@
 package it.uniroma3.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.PrenotazioneDao;
 import it.uniroma3.model.Prenotazione;

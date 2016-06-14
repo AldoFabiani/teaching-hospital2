@@ -25,7 +25,7 @@
 				<h4>{{$index+1}}° Esame:</h4>
 				<dl class="dl-horizontal">
 					<div ng-repeat="(key,value) in prenotazione"
-						ng-if="key!='medico' && key!='dataAvvenutaPrenotazione'">
+						ng-if="key!='medico' && key!='risultato' && key!='dataAvvenutaPrenotazione'">
 						<dt class="first-letter-capital">{{key}}</dt>
 						<dd ng-if="key=='tipologiaEsame'">{{value.nome}}</dd>
 						<dd ng-if="key=='codice' || key=='dataEsame'">{{value}}</dd>

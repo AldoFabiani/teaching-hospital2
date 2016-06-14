@@ -18,13 +18,8 @@ public class TipologiaEsameServiceImpl implements TipologiaEsameService {
 	@Transactional
 	@Override
 	public List<TipologiaEsame> listTipologie() {
-		ArrayList<TipologiaEsame> daRitornare = new ArrayList<TipologiaEsame>();
-		for(TipologiaEsame t : tipologiaDao.findAll()){
-			t.getNorme().size();
-			t.getIndicatori().size();
-			daRitornare.add(t);
-		}
-		return daRitornare;
+		return tipologiaDao.findAll();
+		
 	}
 
 	@Override

@@ -40,15 +40,5 @@ public class Indicatore {
 		this.nome = nome;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		Indicatore that = (Indicatore) obj;
-		return this.nome.equals(that.nome);
-	}
-	
-	@Override
-	public int hashCode() {
-		return this.nome.hashCode();
-	}
-	
+
 }

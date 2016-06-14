@@ -45,6 +45,7 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 	}
 
 	@Override
+	@Transactional
 	public void update(Prenotazione prenotazione) {
 		this.em.merge(prenotazione);
 

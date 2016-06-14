@@ -1,5 +1,7 @@
 package it.uniroma3.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import it.uniroma3.model.Prenotazione;
 
 public interface PrenotazioneService {
