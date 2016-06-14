@@ -15,7 +15,7 @@
 					Di seguito sono riportate informazioni utili su essa:</p>
 				<dl class="dl-horizontal">
 					<div
-						ng-repeat="(key,value) in consultazioneTipologieEsamiOffertiCtrl.tipologia">
+						ng-repeat="(key,value) in tipologieCtrl.tipologia" ng-if="key!='id'">
 						<dt class="first-letter-capital">{{key}}</dt>
 						<dd>{{value}}</dd>
 					</div>

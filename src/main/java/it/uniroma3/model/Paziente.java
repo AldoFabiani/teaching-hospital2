@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 @NamedQuery(name = "findAllPazienti", query = "SELECT p FROM Paziente p")
 @Entity
 public class Paziente {
@@ -36,7 +38,7 @@ public class Paziente {
 	private String email;
 	private String telefono;
 	@OneToMany(mappedBy="paziente",cascade={CascadeType.PERSIST})
-	private Set<Prenotazione> prenotazioni;
+	@JsonBackReference private Set<Prenotazione> prenotazioni;
 
 	public Paziente() {
 		prenotazioni = new HashSet<Prenotazione>();

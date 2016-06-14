@@ -17,7 +17,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
 <script type="text/javascript" src="Assets/app/app.js"></script>
 <script type="text/javascript"
-	src="Assets/app/controllers/inserimentoPrenotazione.js"></script>
+	src="Assets/app/controllers/prenotazione.js"></script>
 <script type="text/javascript"
 	src="Assets/app/controllers/inserimentoTipologiaEsame.js"></script>
 <script type="text/javascript"

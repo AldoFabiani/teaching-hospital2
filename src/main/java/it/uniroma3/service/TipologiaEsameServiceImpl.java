@@ -1,9 +1,11 @@
 package it.uniroma3.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.TipologiaEsameDao;
 import it.uniroma3.model.TipologiaEsame;
@@ -13,9 +15,16 @@ public class TipologiaEsameServiceImpl implements TipologiaEsameService {
 	@Autowired
 	private TipologiaEsameDao tipologiaDao;
 
+	@Transactional
 	@Override
 	public List<TipologiaEsame> listTipologie() {
-		return this.tipologiaDao.findAll();
+		ArrayList<TipologiaEsame> daRitornare = new ArrayList<TipologiaEsame>();
+		for(TipologiaEsame t : tipologiaDao.findAll()){
+			t.getNorme().size();
+			t.getIndicatori().size();
+			daRitornare.add(t);
+		}
+		return daRitornare;
 	}
 
 	@Override

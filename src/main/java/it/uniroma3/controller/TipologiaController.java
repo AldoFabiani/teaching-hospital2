@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,27 +40,21 @@ public class TipologiaController extends WebMvcConfigurerAdapter {
 
 	@RequestMapping(value = "/listTipologie", method = RequestMethod.GET)
 	public @ResponseBody List<TipologiaEsame> getTipologieEsame() {
-		List<TipologiaEsame> tipologie = tipologiaEsameService.listTipologie();
-		
-		for(TipologiaEsame tipologia : tipologie){
-			tipologia.setIndicatori(new HashSet<Indicatore>());
-			tipologia.setNorme(new HashSet<Norma>());
-		}
-		return tipologie;
+		return tipologiaEsameService.listTipologie();
 	}
-	
+
 	@RequestMapping(value = "/addTipologia", method = RequestMethod.POST)
 	public String addTipologieEsame() {
 		String nome = this.request.getParameter("nome");
 		String descrizione = this.request.getParameter("descrizione");
 		Float costo = new Float(this.request.getParameter("costo"));
-		TipologiaEsame daPersistere = new TipologiaEsame(nome,descrizione,costo);
+		TipologiaEsame daPersistere = new TipologiaEsame(nome, descrizione, costo);
 		String[] norme = request.getParameterValues("norme");
 		String[] indicatori = request.getParameterValues("indicatori");
-		for(String nomeNorma : norme){
+		for (String nomeNorma : norme) {
 			daPersistere.addNorma(normaService.findNormaByNome(nomeNorma));
 		}
-		for(String nomeIndicatore: indicatori){
+		for (String nomeIndicatore : indicatori) {
 			daPersistere.addIndicatore(indicatoreEsameService.findIndicatoreByNome(nomeIndicatore));
 		}
 		tipologiaEsameService.insertTipologia(daPersistere);

@@ -14,9 +14,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+
 @NamedQuery(name = "findAllPrenotazioni", query = "SELECT p FROM Prenotazione p")
 
 @Entity
+
 public class Prenotazione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,11 +34,11 @@ public class Prenotazione {
 	@Temporal(TemporalType.DATE)
 	private Date dataEsame;
 	@ManyToOne
-	private Medico medico;
+	@JsonManagedReference private Medico medico;
 	@ManyToOne
-	private Paziente paziente;
+	@JsonManagedReference private Paziente paziente;
 	@ManyToOne
-	private TipologiaEsame tipologiaEsame;
+	@JsonManagedReference private TipologiaEsame tipologiaEsame;
 
 	public Prenotazione() {
 	}
@@ -72,7 +78,6 @@ public class Prenotazione {
 	public void setDataEsame(Date dataEsame) {
 		this.dataEsame = dataEsame;
 	}
-
 	public Medico getMedico() {
 		return medico;
 	}
@@ -80,7 +85,6 @@ public class Prenotazione {
 	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
-
 	public Paziente getPaziente() {
 		return paziente;
 	}
@@ -88,7 +92,6 @@ public class Prenotazione {
 	public void setPaziente(Paziente paziente) {
 		this.paziente = paziente;
 	}
-
 	public TipologiaEsame getTipologiaEsame() {
 		return tipologiaEsame;
 	}

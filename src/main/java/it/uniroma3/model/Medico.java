@@ -1,13 +1,20 @@
 package it.uniroma3.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 @NamedQuery(name = "findAll", query = "SELECT m FROM Medico m")
 @Entity
 public class Medico {
@@ -21,6 +28,8 @@ public class Medico {
 	@Column(nullable=false)
 	private String cognome;
 	private String specializzazione;
+	@OneToMany(mappedBy="medico")
+	@JsonBackReference private List<Prenotazione> prenotazioni;
 	
 	public Medico() {
 	}
@@ -81,6 +90,12 @@ public class Medico {
 	public boolean equals(Object obj) {
 		Medico medico = (Medico) obj;
 		return this.getCodice().equals(medico.getCodice());
+	}
+	public List<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
+	}
+	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
 	}
 
 	

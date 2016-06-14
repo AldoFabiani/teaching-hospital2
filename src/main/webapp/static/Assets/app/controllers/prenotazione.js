@@ -1,7 +1,7 @@
 angular
 		.module('teaching')
 		.controller(
-				"InserimentoPrenotazioneController",
+				"PrenotazioniController",
 				[
 						'entityManagerService',
 						'$filter',
@@ -16,9 +16,11 @@ angular
 							self.dataEsame;
 							self.paziente = {};
 							self.codiceFiscalePaziente;
+							self.prenotazioni = [];
 							self.prenotazione = {};
 							// booleano per ng-show e hide
 							self.hoCercatoPaziente = false;
+							self.hoCercatoMedico = false;
 							self.previewPronto = true;
 
 							// se è presente carica il paziente per mostrarlo
@@ -56,11 +58,11 @@ angular
 								$(event.target).siblings()
 										.removeClass("active");
 								$(event.target).addClass("active");
+								self.hoCercatoMedico = false;
 								if (self.medico === medico) {
 									self.medico = null
 								} else
 									self.medico = medico;
-
 							};
 
 							// al click selezioni la tipologia
@@ -77,11 +79,11 @@ angular
 								if (self.medico.nome)
 									self.prenotazione.medico = self.medico.nome
 											+ ' ' + self.medico.cognome;
-								else self.prenotazione.medico='';
+								else
+									self.prenotazione.medico = '';
 								self.prenotazione.esame = self.tipologia.nome;
 								self.prenotazione.data = self.dataEsame;
-								self.prenotazione.prezzo = $filter('currency')(
-										self.tipologia.costo, "€");
+								self.prenotazione.prezzo = self.tipologia.costo
 							};
 
 							// aggiungi una prenotazione nella base di dati
@@ -97,7 +99,6 @@ angular
 									self.codiceFiscalePaziente = '';
 									self.prenotazione = {};
 									self.tipologia = {};
-									self.medico = {};
 									self.dataEsame = null;
 									self.hoCercatoPaziente = false;
 									$('button').removeClass('active');
@@ -106,5 +107,18 @@ angular
 								$entityManagerService.inserisciOggetto(
 										'prenotazione/addPrenotazione', params,
 										doTask);
+							};
+
+							// carica le prenotazioni dal database
+							this.caricaPrenotazioni = function() {
+								doTask = function(response) {
+									self.prenotazioni = response.data
+									self.hoCercatoMedico = true;
+								};
+								doFail = function(response) {
+								}
+								$entityManagerService.getOggetto(
+										'medico/listPrenotazioni/'+self.medico.codice, {},
+										doTask, doFail);
 							};
 						} ]);

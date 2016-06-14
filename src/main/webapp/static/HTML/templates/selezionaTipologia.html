@@ -16,7 +16,7 @@
 	<button type="button" class="list-group-item"
 			ng-repeat="tipologia in tipologieCtrl.tipologie | filter:tipologieCtrl.searchTipologie | orderBy:'nome'"
 			title="tipologia" name="tipologia"
-			ng-click="inserimentoPrenotazioneCtrl.addTipologia(tipologia)">{{tipologia.nome}}
+			ng-click="prenotazioniCtrl.addTipologia(tipologia)">{{tipologia.nome}}
 			{{tipologia.costo | currency:"€"}}
 	</button>
 </div>

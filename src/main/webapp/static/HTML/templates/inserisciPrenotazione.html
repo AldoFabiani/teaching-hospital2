@@ -2,7 +2,7 @@
 
 <!--TROVA PAZIENTE  -->
 <form name="trovaPaziente" class="form-inline"
-	ng-submit="inserimentoPrenotazioneCtrl.trovaPaziente()">
+	ng-submit="prenotazioniCtrl.trovaPaziente()">
 	<div class="row">
 		<div class="col-md-12">
 			<h4>Paziente</h4>
@@ -10,7 +10,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-9 col-xs-8">
-			<input ng-model="inserimentoPrenotazioneCtrl.codiceFiscalePaziente"
+			<input ng-model="prenotazioniCtrl.codiceFiscalePaziente"
 				name="codiceFiscale" type="text" class="form-control"
 				id="codiceFiscale"
 				placeholder="Inserisci il codice fiscale del paziente">
@@ -24,17 +24,17 @@
 </form>
 
 <div
-	ng-show="inserimentoPrenotazioneCtrl.hoCercatoPaziente && !inserimentoPrenotazioneCtrl.paziente.nome"
+	ng-show="prenotazioniCtrl.hoCercatoPaziente && !prenotazioniCtrl.paziente.nome"
 	id="pazienteNonTrovato">
 	<strong>Attenzione il paziente non è stato trovato!</strong>
 </div>
 
 <div id="datiPaziente"
-	ng-show="inserimentoPrenotazioneCtrl.paziente.nome" class="row">
+	ng-show="prenotazioniCtrl.paziente.nome" class="row">
 	<div class="col-md-12">
 		<h4>Dati del paziente:</h4>
 		<dl class="dl-horizontal">
-			<div ng-repeat="(key,value) in inserimentoPrenotazioneCtrl.paziente">
+			<div ng-repeat="(key,value) in prenotazioniCtrl.paziente">
 				<dt class="first-letter-capital">{{key}}</dt>
 				<dd>{{value}}</dd>
 			</div>
@@ -43,7 +43,7 @@
 </div>
 
 <form name="inserimentoPrenotazione"
-	ng-submit="inserimentoPrenotazioneCtrl.aggiungiPrenotazione()">
+	ng-submit="prenotazioniCtrl.aggiungiPrenotazione()">
 	<!--SELEZIONA MEDICO  -->
 	<div id="mediciContainer" ng-include="'templates/selezionaMedico.html'"
 		ng-controller="MediciController as mediciCtrl"></div>
@@ -60,14 +60,14 @@
 			<h4>Data Esame</h4>
 			<input type="date" name="dataEsame"
 				placeholder="Inserisci la data..."
-				ng-model="inserimentoPrenotazioneCtrl.dataEsame">
+				ng-model="prenotazioniCtrl.dataEsame">
 		</div>
 		<div class="col-md-9">
-			<button ng-click="inserimentoPrenotazioneCtrl.makeNewPrenotazione()"
+			<button ng-click="prenotazioniCtrl.makeNewPrenotazione()"
 				type="button" class="btn btn-primary btn-lg" data-toggle="modal"
 				data-target="#prenotazioneAggiunta">Aggiungi Prenotazione</button>
 		</div>
 	</div>
 	<div ng-include="'preview/previewPrenotazione.html'"
-		ng-show="inserimentoPrenotazioneCtrl.previewPronto"></div>
+		ng-show="prenotazioniCtrl.previewPronto"></div>
 </form>

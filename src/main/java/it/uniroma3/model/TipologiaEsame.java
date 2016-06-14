@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 @Entity
 @NamedQuery(name = "findAllTipologie", query = "SELECT t FROM TipologiaEsame t")
 public class TipologiaEsame {
@@ -24,9 +27,9 @@ public class TipologiaEsame {
 	@Column(nullable = false)
 	private Float costo;
 	@ManyToMany
-	private Set<Norma> norme;
+	@JsonBackReference("medico") private Set<Norma> norme;
 	@ManyToMany
-	private Set<Indicatore> indicatori;
+	@JsonBackReference("medico") private Set<Indicatore> indicatori;
 
 
 	public TipologiaEsame() {

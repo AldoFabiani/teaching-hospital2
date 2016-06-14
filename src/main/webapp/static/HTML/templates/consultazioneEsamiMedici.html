@@ -1,0 +1,41 @@
+<h2>Consultazione Esami Medico</h2>
+<p>Cerca tutti gli esami che un medico ha sostenuto o dovrà
+	sostenere, cliccandoci sopra nella lista sottostante e cliccando sul pulsante in basso.</p>
+<form name="trovaEsamiMedico"
+	ng-submit="prenotazioniCtrl.caricaPrenotazioni()">
+	<!--SELEZIONA MEDICO  -->
+	<div id="mediciContainer" ng-include="'templates/selezionaMedico.html'"
+		ng-controller="MediciController as mediciCtrl"></div>
+
+	<div class="col-md-9">
+		<button data-loading-text="Loading..." type="submit"
+			class="btn btn-primary btn-lg">Trova Esami</button>
+	</div>
+
+	<div id="esamiMedico" ng-show="prenotazioniCtrl.prenotazioni"
+		class="row">
+		<div ng-show="prenotazioniCtrl.hoCercatoMedico" class="col-md-12">
+			<h2>Risultati della ricerca</h2>
+			<p>
+				E' stata eseguita la ricerca per gli esami effettuati o ancora da
+				effettuare per il medico: <strong>{{prenotazioniCtrl.medico.nome}}
+					{{prenotazioniCtrl.medico.cognome}}</strong>
+			</p>
+			<div ng-repeat="prenotazione in prenotazioniCtrl.prenotazioni">
+				<h4>{{$index+1}}° Esame:</h4>
+				<dl class="dl-horizontal">
+					<div ng-repeat="(key,value) in prenotazione"
+						ng-if="key!='medico' && key!='dataAvvenutaPrenotazione'">
+						<dt class="first-letter-capital">{{key}}</dt>
+						<dd ng-if="key=='tipologiaEsame'">{{value.nome}}</dd>
+						<dd ng-if="key=='codice' || key=='dataEsame'">{{value}}</dd>
+						<dd ng-if="key=='paziente'">
+							<div ng-repeat="(key2,value2) in value" ng-if="key2!='id'">
+								<strong>{{key2}}</strong>:{{value2}}
+							</div>
+						</dd>
+					</div>
+				</dl>
+			</div>
+		</div>
+	</div>

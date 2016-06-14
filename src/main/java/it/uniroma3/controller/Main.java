@@ -17,9 +17,6 @@ public static void main(String[] args){
 //	dao.save(t);
 	EntityManagerFactory createEntityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
 	EntityManager createEntityManager = createEntityManagerFactory.createEntityManager();
-	Paziente find = createEntityManager.find(Paziente.class, 1);
-	Set<Prenotazione> prenotazioni = find.getPrenotazioni();
-	find.toString();
 	createEntityManager.close();
 	createEntityManagerFactory.close();
 }

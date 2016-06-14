@@ -1,12 +1,32 @@
 <h2>Esami Offerti</h2>
-
+<p>Ecco gli esami che la clinica può sostenere, per leggere
+	ulteriori dettagli clicca semplicemente su uno di questi.</p>
 <div class="row">
 	<div class="col-md-9 col-xs-8">
-		<div ng-include="'HTML/templates/consultaTipologia.html'"
-			id="tipologieContainer"></div>
+		<!-- Inserimento Tipologia-->
+		<div class="row">
+			<div class="col-md-2 col-xs-4">
+				<h4>Tipologia Esame</h4>
+			</div>
+			<div class="col-md-offset-7 col-md-3 col-xs-8">
+				<input type="text"
+					ng-model="tipologieCtrl.searchTipologie"
+					class="form-control" id="projects_search"
+					placeholder="Inserisci il nome...">
+			</div>
+		</div>
+
+		<div class="list-group">
+			<button type="button" class="btn btn-default list-group-item"
+				data-toggle="modal" data-target="#sceltaEffettuata"
+				ng-repeat="tipologia in tipologieCtrl.tipologie | filter:tipologieCtrl.searchTipologie | orderBy:'nome'"
+				title="tipologia" name="tipologia"
+				ng-click="tipologieCtrl.addTipologia(tipologia)">{{tipologia.nome}}
+			</button>
+		</div>
+
 	</div>
 </div>
-	
-<div ng-include="'HTML/preview/previewTipologiaScelta.html'"
-		ng-show="consultazioneTipologieEsamiOffertiCtrl.previewPronto"></div>
+
+<div ng-include="'HTML/preview/previewTipologiaScelta.html'"></div>
 
