@@ -29,7 +29,8 @@ public class PrenotazioneDaoJPA implements PrenotazioneDao {
 	public Prenotazione findByPrimaryKey(Long id) {
 		return null;
 	}
-
+	
+	@Override
 	public Prenotazione findByCodice(String codicePrenotazione) {
 
 		Query queryFindByCodice = em.createQuery("SELECT p FROM Prenotazione p WHERE p.codice = :codicePrenotazione");

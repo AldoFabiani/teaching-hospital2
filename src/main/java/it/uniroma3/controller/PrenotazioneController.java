@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.Paziente;
 import it.uniroma3.model.Prenotazione;
+import it.uniroma3.model.Risultato;
 import it.uniroma3.model.TipologiaEsame;
 import it.uniroma3.service.MedicoService;
 import it.uniroma3.service.PazienteService;
