@@ -20,6 +20,9 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import it.uniroma3.utils.JsonDateSerializer;
 
 @NamedQuery(name = "findAllPrenotazioni", query = "SELECT p FROM Prenotazione p")
 
@@ -66,7 +69,7 @@ public class Prenotazione {
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
-
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getDataAvvenutaPrenotazione() {
 		return dataAvvenutaPrenotazione;
 	}
@@ -74,7 +77,7 @@ public class Prenotazione {
 	public void setDataAvvenutaPrenotazione(Date dataAvvenutaPrenotazione) {
 		this.dataAvvenutaPrenotazione = dataAvvenutaPrenotazione;
 	}
-
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getDataEsame() {
 		return dataEsame;
 	}

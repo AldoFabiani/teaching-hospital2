@@ -18,6 +18,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import it.uniroma3.utils.JsonDateSerializer;
 
 @NamedQuery(name = "findAllPazienti", query = "SELECT p FROM Paziente p")
 @Entity
@@ -88,6 +91,7 @@ public class Paziente {
 		this.indirizzo = indirizzo;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getDataNascita() {
 		return dataNascita;
 	}
