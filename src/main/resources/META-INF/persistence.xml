@@ -13,6 +13,9 @@
 		<class>it.uniroma3.model.Norma</class>
 		<class>it.uniroma3.model.Indicatore</class>
 		<class>it.uniroma3.model.TipologiaEsame</class>
+		<class>it.uniroma3.model.Risultato</class>
+		<class>it.uniroma3.model.LineaRisultato</class>
+
 		<properties>
 			<property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/teaching" />
 			<property name="openjpa.jdbc.DBDictionary" value="postgres" />

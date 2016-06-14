@@ -15,6 +15,23 @@ public class PrenotazioneServiceImpl implements PrenotazioneService {
 	public void insertPrenotazione(Prenotazione prenotazione) {
 		this.prenotazioneDao.save(prenotazione);
 	}
+	
+	@Override
+	@Transactional
+	public Prenotazione findPrenotazioneByCodiceConRisultati(String codice) {
+		return this.findPrenotazioneByCodice(codice);
+	}
+
+	@Override
+	public Prenotazione findPrenotazioneByCodice(String codice) {
+		return prenotazioneDao.findByCodice(codice);
+	}
+
+	@Override
+	public void updatePrenotazione(Prenotazione prenotazione) {
+		this.prenotazioneDao.update(prenotazione);
+		
+	}
 
 	
 }

@@ -11,5 +11,6 @@ public interface PrenotazioneDao {
 	public List<Prenotazione> findAll();       
 	public void update(Prenotazione prenotazione); //Update
 	public void delete(Prenotazione prenotazione); //Delete	
+	Prenotazione findByCodice(String codicePrenotazione);
 	
 }

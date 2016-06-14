@@ -39,6 +39,8 @@ public class Prenotazione {
 	@JsonManagedReference private Paziente paziente;
 	@ManyToOne
 	@JsonManagedReference private TipologiaEsame tipologiaEsame;
+	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+	private Risultato risultato;
 
 	public Prenotazione() {
 	}
@@ -99,8 +101,17 @@ public class Prenotazione {
 	public void setTipologiaEsame(TipologiaEsame tipologiaEsame) {
 		this.tipologiaEsame = tipologiaEsame;
 	}
+	
 
 	// TODO equals e hashcode sul codice
+
+	public Risultato getRisultato() {
+		return risultato;
+	}
+
+	public void setRisultato(Risultato risultato) {
+		this.risultato = risultato;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

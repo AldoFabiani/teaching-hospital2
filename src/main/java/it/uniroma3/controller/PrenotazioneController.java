@@ -35,7 +35,7 @@ public class PrenotazioneController extends WebMvcConfigurerAdapter{
 	private TipologiaEsameService tipologiaEsameService;
 	@Autowired
 	private HttpServletRequest request;
-	
+
 	@RequestMapping(value="/addPrenotazione",method=RequestMethod.POST)
 	public String addPrenotazione(){
 		DateValidator dateValidator = new DateValidator();
@@ -45,5 +45,25 @@ public class PrenotazioneController extends WebMvcConfigurerAdapter{
 		Prenotazione prenotazione = new Prenotazione(dateValidator.validate(request.getParameter("dataEsame"), "yyyy-mm-dd"),medico,paziente,tipologiaEsame);
 		this.prenotazioneService.insertPrenotazione(prenotazione);
 		return "success";
+	}
+
+	@RequestMapping(value= "/setRisultato",method=RequestMethod.POST)
+	public ResponseEntity<String> setRisultato(){
+		Prenotazione prenotazione = prenotazioneService.findPrenotazioneByCodice(this.request.getParameter("codiceTipologia"));
+		String[] indicatori = request.getParameterValues("indicatori");
+		String[] valori = request.getParameterValues("valori");
+		Risultato risultato = new Risultato();
+		for(int i=0; i<indicatori.length; i++){
+			risultato.addLinea(
+					new LineaRisultato(indicatoreService.findIndicatoreByNome(indicatori[i]),valori[i]));
+		}
+		prenotazione.setRisultato(risultato);
+		this.prenotazioneService.updatePrenotazione(prenotazione);
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+
+	@RequestMapping(value= "/find/{codiceTipologia}",method=RequestMethod.GET)
+	public @ResponseBody Prenotazione findPrenotazioneConRisultati(@PathVariable("codiceTipologia") String codiceTipologia){
+		return prenotazioneService.findPrenotazioneByCodiceConRisultati("codiceTipologia");
 	}
 }
