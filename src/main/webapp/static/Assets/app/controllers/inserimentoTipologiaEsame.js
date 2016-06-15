@@ -82,7 +82,7 @@ angular.module('teaching').controller("InserimentoTipologiaEsameController",
 //					self.nuovaTipologiaEsame.indicatori=[];
 					$('#tipologiaAggiunta').modal('hide');
 				};
-				$entityManagerService.inserisciOggetto('tipologia/addTipologia', params,doTask);		
+				$entityManagerService.inserisciOggetto('tipologia/addTipologia', params,doTask,function(){});		
 			};
 
 		} ]);
