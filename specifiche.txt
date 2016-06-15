@@ -1,0 +1,118 @@
+Sistemi Informativi su Web - Progetto 2015-2016
+Studenti:
+- Aldo Fabiani (475837)
+- Davide Orlando (475272)
+- Ciro Oliviero (469680)
+
+-----------------------------------------------------------------------------------------------------------------------------
+Teaching Hospital
+Requisiti e casi d'uso
+
+Teaching Hospital è una clinica medica multi-specialistica. 
+L’uso del sistema in discussione è descritto principalmente dai seguenti casi d’uso (sono di interesse sia gli scenari 
+principali di successo che le estensioni mostrate):
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+[ Con implementazione grafica ]
+Caso d’uso UC1: Consultazione tipologie di esami offerti – Attore primario: un Utente non registrato.
+Scenario principale di successo:
+1. Un Utente non registrato vuole consultare l’elenco delle Tipologie di Esami offerti dalla Clinica.
+2. L’Utente non registrato sceglie l’attività “Consultazione Esami Offerti”.
+3. Il Sistema mostra l’elenco delle Tipologie d’Esame che sono offerte dalla Clinica, mostrando per ciascuna Tipologia 
+d’Esame il nome.
+4. L’Utente non registrato inserisce il codice di una Tipologia d’Esame a cui è interessato. Il Sistema mostra i dettagli 
+della Tipologia d’Esame scelta (nome, descrizione, costo).
+L’Utente non registrato ripete il passo 4 un numero indefinite di volte.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+[ Con implementazione grafica ]
+Caso d’uso UC2: Effettuare prenotazione per una tipologia d’esame – Attore primario: un Amministratore.
+1. Un Paziente (registrato o non nel Sistema) vuole prenotarsi per una Tipologia d’Esame offerto dalla clinica.
+2. L’Amministratore sceglie l’attività “Inserimento Prenotazione”.
+3. Il Sistema mostra l’elenco delle Tipologie d’Esame offerte dalla Clinica, mostrando per ciascuna Tipologia d’Esame 
+nome e prezzo, e l'elenco dei medici che lavorano presso la clinica, mostrando per ciascun Medico nome, cognome e 
+specializzazione.
+4. L’Amministratore inserisce il codice fiscale del Paziente, il codice della Tipologia d’Esame a cui è interessato, 
+il codice del Medico che condurrà la visita e la data in cui il paziente preferisce effettuare l’esame. Il Sistema 
+registra la prenotazione per la Tipologia d’Esame selezionata, registrando anche la data e l’ora dell'avvenuta prenotazione.
+5. Il Sistema mostra un riepilogo dell’avvenuta Prenotazione e genera una ricevuta.
+6. Il Paziente va via con la ricevuta.
+
+Estensioni:
+2-5a Il Paziente decide di annullare la prenotazione per l’esame.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Caso d’uso UC3: Consultazione risultati di esami – Attore primario: un Paziente.
+Scenario principale di successo:
+1. Un Paziente vuole consultare i Risultati dei propri esami.
+2. Il Paziente inserisce il suo codice identificativo e la sua password. Il Sistema verifica la correttezza dei dati 
+immessi e autentica il Paziente. Il Sistema mostra i dati del paziente.
+3. Il Paziente sceglie l’attività “Consultazione Risultati Esame”.
+4. Il Sistema mostra l’elenco degli esami effettuati dal Paziente mostrando per ognuno codice, data e nome della Tipologia 
+d'Esame. 
+5. Il Paziente inserisce il codice di un esame a cui è interessato. Il Sistema mostra i dettagli dell’esame scelto.
+Il Paziente ripete il passo 5 finche' non indica che ha terminato.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+[ Con implementazione grafica ]
+Caso d’uso UC4: Inserimento tipologia d’esame – Attore primario: un Amministratore.
+Scenario principale di successo:
+1. L’Amministratore vuole inserire una nuova tipologia d’esame.
+2. L’Amministratore sceglie l’attività “Inserimento Tipologia Esame”.
+3. Il Sistema mostra un elenco delle norme di preparazione già disponibili (visualizzando per ogni norma il nome) 
+e un elenco degli indicatori di risultato già disponibili (visualizzando per ogni indicatore il nome).
+4. L’Amministratore inserisce nome, descrizione e costo della nuova tipologia d’esame, nonche' le norme di preparazione 
+per l’esame e gli indicatori dei risultati.
+5. Il Sistema mostra un riepilogo della nuova tipologia d’esame inserita. L’Amministratore conferma.
+6. Il Sistema registra la nuova tipologia d’esame.
+L’Amministratore ripete i passi 3-5 finché non indica che ha terminato.
+
+Estensioni:
+2-5a L’Amministratore annulla l’inserimento di una nuova tipologia.
+4b L'Amministratore aggiunge una nuova norma nel Sistema.
+4c L'Amministratore aggiunge un nuovo indicatore nel Sistema.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+[ Con implementazione grafica ]
+Caso d’uso UC5: Consultazione esami effettuati da un medico – Attore primario: un Amministratore.
+Scenario principale di successo:
+1. L’Amministratore vuole consultare gli esami effettuati da un medico.
+2. L’Amministratore sceglie l’attività “Consultazione Esami Medico”.
+3. Il Sistema mostra l’elenco dei Medici che lavorano per la clinica, mostrando per ciascuno nome, cognome e specializzazione.
+4. L’Amministratore inserisce il codice di un Medico. Il Sistema mostra tutti gli esami effettuati da un Medico, 
+mostrando per ogni esame il codice, la data in cui è stato effettuato, la tipologia di esame e i dettagli del Paziente.
+L’Amministratore ripete il passo 4 un numero indefinite di volte.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Caso d’uso UC6: Inserimento risultati esame – Attore primario: un Amministratore.
+Scenario principale di successo:
+1. L’Amministratore vuole inserire i risultati di un esame.
+2. L’Amministratore sceglie l’attività “Inserimento risultati esame”.
+3. L’Amministratore inserisce il codice di un esame. Il Sistema mostra i dettagli di quell’esame(data, Medico, Paziente) 
+e un insieme di indicatori di risultati da compilare.
+4. L’Amministratore inserisce tutti i risultati dell’esame relative agli indicatori disponibili per quell’esame.
+5. Il Sistema mostra un riepilogo dell’esame con i risultati immessi. L’Amministratore conferma.
+6. Il Sistema regista i risultati dell’ esame.
+
+Estensioni:
+2-5a L’Amministratore annulla l’inserimento dei risultati per l’esame scelto.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Caso d’uso UC7: Inserimento di un Paziente nell’ anagrafica dei pazienti – Attore primario: un Amministratore.
+Scenario principale di successo:
+1. L’Amministratore vuole inserire un nuovo Paziente nell’anagrafica dei pazienti del Sistema.
+2. L’Amministratore sceglie l’attività “Inserimento Nuovo Paziente”.
+3. L’Amministratore chiede le informazioni necessarie(nome, cognome, codice fiscale, data di nascita, indirizzo, telefono) all’Utente.
+4. L’Amministratore inserisce tutti i dati forniti dall’Utente.
+5. Il Sistema mostra un riepilogo dei dati immessi. L’Amministratore conferma.
+6. Il Sistema registra il nuovo Paziente nell’anagrafica.
+
+Estensioni:
+2-5a L’Amministratore annulla l’inserimento del nuovo Paziente.
