@@ -51,7 +51,8 @@ public class PrenotazioneController extends WebMvcConfigurerAdapter{
 		Paziente paziente = this.pazienteService.findPaziente(request.getParameter("codiceFiscale"));
 		Medico medico = this.medicoService.findByCodice(request.getParameter("medico"));
 		TipologiaEsame tipologiaEsame = this.tipologiaEsameService.findByNome(request.getParameter("tipologia"));
-		Prenotazione prenotazione = new Prenotazione(dateValidator.validate(request.getParameter("dataEsame"), "yyyy-mm-dd"),medico,paziente,tipologiaEsame);
+		String dateWrongFormat = request.getParameter("dataEsame");
+		Prenotazione prenotazione = new Prenotazione(dateValidator.validate(dateWrongFormat.substring(0,10), "yyyy-MM-dd"),medico,paziente,tipologiaEsame);
 		this.prenotazioneService.insertPrenotazione(prenotazione);
 		return "success";
 	}
